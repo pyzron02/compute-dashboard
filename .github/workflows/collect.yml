@@ -1,0 +1,34 @@
+name: Collect prices
+
+on:
+  schedule:
+    - cron: "15 6 * * *"   # daily, 06:15 UTC
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["collectors/**", "tests/**"]
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test
+        run: python -m unittest -v
+      - name: Azure retail prices
+        if: github.event_name != 'push'
+        run: python -m collectors.azure
+      - name: Commit new data
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "price-collector"
+          git config user.email "actions@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet || git commit -m "data: prices for $(date -u +%F)"
+          git push

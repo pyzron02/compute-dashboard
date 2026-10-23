@@ -1,0 +1,13 @@
+[
+ {"armSkuName":"Standard_ND96isr_H100_v5","meterName":"ND96isrH100v5","type":"Consumption","retailPrice":98.32,"unitOfMeasure":"1 Hour","productName":"Virtual Machines NDsr H100 v5 Series","armRegionName":"eastus","meterId":"m1"},
+ {"armSkuName":"Standard_ND96isr_H100_v5","meterName":"ND96isrH100v5","type":"Reservation","retailPrice":551221.0,"unitOfMeasure":"1 Hour","reservationTerm":"1 Year","productName":"Virtual Machines NDsr H100 v5 Series","armRegionName":"eastus","meterId":"m1"},
+ {"armSkuName":"Standard_ND96isr_H100_v5","meterName":"ND96isrH100v5","type":"Reservation","retailPrice":1134310.0,"unitOfMeasure":"1 Hour","reservationTerm":"3 Years","productName":"Virtual Machines NDsr H100 v5 Series","armRegionName":"eastus","meterId":"m1"},
+ {"armSkuName":"Standard_ND96isr_H100_v5","meterName":"ND96isrH100v5 Spot","type":"Consumption","retailPrice":18.169536,"unitOfMeasure":"1 Hour","productName":"Virtual Machines NDsr H100 v5 Series","armRegionName":"eastus","meterId":"m2"},
+ {"armSkuName":"Standard_ND96isr_H100_v5","meterName":"ND96isrH100v5 Low Priority","type":"Consumption","retailPrice":19.664,"unitOfMeasure":"1 Hour","productName":"Virtual Machines NDsr H100 v5 Series","armRegionName":"eastus","meterId":"m3"},
+ {"armSkuName":"Standard_ND96isr_H100_v5","meterName":"ND96isrH100v5","type":"Consumption","retailPrice":102.736,"unitOfMeasure":"1 Hour","productName":"Virtual Machines NDsr H100 v5 Series Windows","armRegionName":"eastus","meterId":"m4"},
+ {"armSkuName":"Standard_ND96isr_H100_v5","meterName":"ND96isrH100v5","type":"DevTestConsumption","retailPrice":98.32,"unitOfMeasure":"1 Hour","productName":"Virtual Machines NDsr H100 v5 Series Windows","armRegionName":"eastus","meterId":"m4"},
+ {"armSkuName":"Standard_NC40ads_H100_v5","meterName":"NC40adsH100v5","type":"Consumption","retailPrice":6.98,"unitOfMeasure":"1 Hour","productName":"Virtual Machines NCadsH100v5 Series","armRegionName":"eastus","meterId":"m5"},
+ {"armSkuName":"Standard_NC80adis_H100_v5","meterName":"NC80adisH100v5","type":"Consumption","retailPrice":13.96,"unitOfMeasure":"1 Hour","productName":"Virtual Machines NCadsH100v5 Series","armRegionName":"eastus","meterId":"m6"},
+ {"armSkuName":"Standard_ND128isr_GB200_v6","meterName":"ND128isrGB200v6","type":"Consumption","retailPrice":100.0,"unitOfMeasure":"1 Hour","productName":"Virtual Machines NDsr GB200 v6 Series","armRegionName":"eastus","meterId":"m7"},
+ {"armSkuName":"Standard_NV_Mystery_H100","meterName":"Mystery","type":"Consumption","retailPrice":1.0,"unitOfMeasure":"1 Hour","productName":"Virtual Machines Mystery","armRegionName":"eastus","meterId":"m8"}
+]
