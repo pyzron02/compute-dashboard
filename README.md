@@ -10,7 +10,7 @@ Plan: https://claude.ai/artifact/TEGfvuSfz1y1vB25FYuVD4
 | Collector | Source | Auth | Output |
 | --- | --- | --- | --- |
 | `collectors/azure.py` | [Azure Retail Prices API](https://learn.microsoft.com/en-us/rest/api/cost-management/retail-prices/azure-retail-prices) | none | `data/tidy/cloud_prices.csv` |
-| `collectors/nebius.py` | [Nebius spot price API](https://docs.nebius.com/signup-billing/spot-prices) | none | `data/tidy/cloud_prices.csv`, `data/tidy/nebius_spot_hourly.csv` (hourly, rolling 30-day backfill) |
+| `collectors/nebius.py` | [Nebius spot price API](https://docs.nebius.com/signup-billing/spot-prices) | none | `data/tidy/cloud_prices.csv`, `data/tidy/nebius_spot_hourly.csv` (hourly, rolling 30-day backfill), `data/tidy/nebius_spot_15min.csv` (15-minute, last 7 days, appended so it grows) |
 
 Coming next: AWS on-demand and spot, Google Cloud, Vast.ai, OpenRouter, SEC EDGAR, TSMC.
 Keys for the keyed sources: see [docs/API_KEYS.md](docs/API_KEYS.md).
@@ -42,6 +42,16 @@ Settings → Pages → Source: GitHub Actions). Chart.js 4.4.1 is vendored in `s
 Hand-maintained inputs, each row with its source URL:
 `data/manual/list_prices.csv` (Nebius on-demand), `data/manual/gpu_specs.csv` (dense BF16
 throughput from Epoch AI), `data/manual/events.csv` (chart annotations).
+
+The page also shows how often each GPU's spot price sits at its on-demand cap (within 3%),
+and the hour-of-day and weekday shape of spot prices with the daily and weekly trend divided out.
+
+## Weekly digest
+
+`analysis/digest.py` writes `reports/weekly/<date>.md`: the week's biggest moves, Azure list
+changes, patterns, logged events (as context, not causes), data health and sources. The workflow
+runs it on Mondays at 06:45 UTC and posts it as a GitHub issue labelled `digest`
+(run by hand with the `digest` box ticked in Actions).
 
 Preview locally: `python -m analysis.build_site && python -m http.server -d site`.
 

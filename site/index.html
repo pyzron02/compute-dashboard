@@ -60,6 +60,10 @@
                      border: 1px solid var(--line); background: transparent; color: var(--ink); }
   .controls button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
   .scroll { overflow-x: auto; }
+  .chart.short { height: 240px; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .pair .panel { margin-top: 12px; }
+  @media (max-width: 720px) { .pair { grid-template-columns: 1fr; } }
   table { border-collapse: collapse; width: 100%; font-size: 13px; font-variant-numeric: tabular-nums; }
   th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
   th { color: var(--quiet); font-weight: 600; white-space: nowrap; }
@@ -74,7 +78,7 @@
 <main>
   <h1>AI compute prices</h1>
   <div class="sub" id="asof">Loading…</div>
-  <div class="sub">Free public sources, collected daily. <a href="https://github.com/pyzron02/compute-dashboard">Code and raw data</a> · <a href="#sources">Sources</a></div>
+  <div class="sub">Free public sources, collected daily. <a href="https://github.com/pyzron02/compute-dashboard">Code and raw data</a> · <a href="#sources">Sources</a> · <a href="https://github.com/pyzron02/compute-dashboard/issues?q=label%3Adigest">Weekly digests</a></div>
 
   <div class="tiles" id="tiles"></div>
   <p class="note">Nebius spot price now (median across its regions) and its change over 7 days. The badge compares spot with on-demand: tight means spot is at least 60% of on-demand, loose means under 35%.</p>
@@ -89,6 +93,20 @@
   <div class="controls" id="gpu-buttons" role="group" aria-label="GPU"></div>
   <div class="panel"><div class="chart"><canvas id="regional" aria-label="Nebius hourly spot price by region"></canvas></div></div>
   <p class="note" id="events-note"></p>
+
+  <h2>Time at the price cap</h2>
+  <div class="sub">Share of each day that Nebius spot sat within 3% of its on-demand price, meaning spot capacity was effectively sold out.</div>
+  <div class="panel"><div class="chart short"><canvas id="atcap" aria-label="Share of each day at the price cap"></canvas></div></div>
+  <p class="note" id="atcap-note"></p>
+
+  <h2>When prices peak</h2>
+  <div class="sub">Nebius spot price by time of day and day of week, relative to the same GPU's level that day or week (trend removed).</div>
+  <div class="controls" id="shape-buttons" role="group" aria-label="GPU"></div>
+  <div class="pair">
+    <div class="panel"><div class="chart short"><canvas id="byhour" aria-label="Price by hour of day"></canvas></div></div>
+    <div class="panel"><div class="chart short"><canvas id="byweekday" aria-label="Price by day of week"></canvas></div></div>
+  </div>
+  <p class="note" id="shape-note"></p>
 
   <h2>Prices by provider and tier</h2>
   <div class="controls" id="unit-buttons" role="group" aria-label="Unit">
@@ -137,6 +155,7 @@
       <div class="price">${money(t.spot)}<span class="unit"> /GPU-hr spot</span></div>
       <div class="row"><span>7 days</span><span class="${t.change_7d > 0 ? 'up' : t.change_7d < 0 ? 'down' : ''}">${pct(t.change_7d)}</span></div>
       <div class="row"><span>Spot / on-demand</span><span>${share(t.nebius_ratio)}</span></div>
+      <div class="row"><span>At cap, 7 days</span><span>${share(t.at_cap_7d)}</span></div>
       <div class="row"><span>Regions</span><span>${t.regions}</span></div>
     </div>`).join('');
 
@@ -170,7 +189,15 @@
     ? 'Events: ' + events.map((e, i) => `${i + 1}. ${dayLabel(e.ms)}, <a href="${esc(e.url)}">${esc(e.label)}</a>`).join(' · ')
     : '';
 
-  const timeAxis = (lo, hi) => ({ type: 'linear', min: lo, max: hi, ticks: { callback: v => dayLabel(v), maxTicksLimit: 7 }, grid: { display: false } });
+  const timeAxis = (lo, hi) => ({ type: 'linear', min: lo, max: hi, grid: { display: false },
+    ticks: { callback: v => dayLabel(v) },
+    // Ticks on UTC midnights so event lines and dates line up.
+    afterBuildTicks: ax => {
+      const t = [];
+      for (let v = Math.ceil(ax.min / 864e5) * 864e5; v <= ax.max; v += 864e5) t.push({ value: v });
+      const step = Math.ceil(t.length / 7);
+      ax.ticks = t.filter((_, i) => i % step === 0);
+    } });
 
   // Scarcity chart: one line per GPU for Nebius, points for Azure.
   const scar = data.scarcity;
@@ -239,6 +266,62 @@
     drawRegional(b.dataset.gpu);
   });
   if (regGpus.length) drawRegional(regGpus[0]);
+
+  // Time at the price cap: one line per GPU with a known on-demand price.
+  const capRows = data.at_cap || [];
+  const capGpus = [...new Set(capRows.map(c => c.gpu))].sort((a, b) => gpuOrder(a) - gpuOrder(b));
+  const capX = capRows.map(c => Date.parse(c.date + 'T12:00:00Z'));
+  if (capRows.length) new Chart(document.getElementById('atcap'), {
+    type: 'line', plugins: [eventLines],
+    data: { datasets: capGpus.map(g => ({
+      label: g, data: capRows.filter(c => c.gpu === g).map(c => ({ x: Date.parse(c.date + 'T12:00:00Z'), y: c.share * 100, c })),
+      borderColor: gpuColor(g), backgroundColor: gpuColor(g), borderWidth: 2, pointRadius: 2, cubicInterpolationMode: "monotone" })) },
+    options: {
+      maintainAspectRatio: false, interaction: { mode: 'nearest', intersect: false },
+      scales: { x: timeAxis(Math.min(...capX) - 432e5, Math.max(...capX) + 432e5), y: { min: 0, max: 100, ticks: { callback: v => v + '%' } } },
+      plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, usePointStyle: true } },
+                 tooltip: { callbacks: { label: c => `${c.dataset.label}: ${Math.round(c.parsed.y)}% of ${c.raw.c.intervals} intervals` } } }
+    }
+  });
+  document.getElementById('atcap-note').textContent = capRows.length
+    ? `Measured on ${data.intraday.hour_granularity} prices from ${capRows[0].date}. The first and last days can be partial.` : '';
+
+  // Time-of-day and weekday shape, switchable by GPU.
+  const shapes = (data.intraday && data.intraday.gpus) || [];
+  const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const barColors = (vals, g) => vals.map(v => v == null ? 'transparent' : v >= 0 ? gpuColor(g) : css('--quiet'));
+  const shapeOpts = (title, labels) => ({
+    maintainAspectRatio: false,
+    scales: { x: { grid: { display: false }, ticks: { autoSkip: true, maxRotation: 0 } },
+              y: { ticks: { callback: v => (v > 0 ? '+' : '') + v + '%' } } },
+    plugins: { legend: { display: false }, title: { display: true, text: title, align: 'start', color: css('--ink'), font: { weight: '600' } },
+               tooltip: { callbacks: { label: c => (c.parsed.y > 0 ? '+' : '') + c.parsed.y.toFixed(1) + '% vs the level' } } }
+  });
+  let hourChart, dayChart;
+  const drawShape = gpu => {
+    const g = shapes.find(x => x.gpu === gpu); if (!g) return;
+    const hours = g.by_hour.map(v => v == null ? null : v * 100);
+    const days = g.by_weekday.map(v => v == null ? null : v * 100);
+    const hourData = { labels: [...Array(24).keys()].map(h => String(h).padStart(2, '0')), datasets: [{ data: hours, backgroundColor: barColors(hours, gpu) }] };
+    const dayData = { labels: weekdays, datasets: [{ data: days, backgroundColor: barColors(days, gpu) }] };
+    if (hourChart) { hourChart.data = hourData; hourChart.update(); dayChart.data = dayData; dayChart.update(); }
+    else {
+      hourChart = new Chart(document.getElementById('byhour'), { type: 'bar', data: hourData, options: shapeOpts('By hour of day (UTC)') });
+      dayChart = new Chart(document.getElementById('byweekday'), { type: 'bar', data: dayData, options: shapeOpts('By day of week') });
+    }
+    document.getElementById('shape-note').textContent =
+      `${gpu}: time of day from ${g.hour_days} full days of ${data.intraday.hour_granularity} prices; day of week from ${g.weekday_days} days of hourly prices, ` +
+      'each compared with the centred 7-day average. Early evidence: each weekday has only one or two samples so far.';
+  };
+  const shapeGpus = shapes.filter(g => g.by_hour.some(v => v)).map(g => g.gpu);
+  const shapeButtons = document.getElementById('shape-buttons');
+  shapeButtons.innerHTML = shapeGpus.map((g, i) => `<button type="button" data-gpu="${esc(g)}" aria-pressed="${i === 0}">${esc(g)}</button>`).join('');
+  shapeButtons.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    shapeButtons.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    drawShape(b.dataset.gpu);
+  });
+  if (shapeGpus.length) drawShape(shapeGpus[0]);
 
   // Price table with a unit toggle; the cheapest cell per row is highlighted.
   const cols = [

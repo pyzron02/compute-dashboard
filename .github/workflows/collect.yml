@@ -3,7 +3,13 @@ name: Collect prices
 on:
   schedule:
     - cron: "15 6 * * *"   # daily, 06:15 UTC
+    - cron: "45 6 * * 1"   # Mondays, 06:45 UTC: collect again, then post the weekly digest
   workflow_dispatch:
+    inputs:
+      digest:
+        description: "Also post the weekly digest"
+        type: boolean
+        default: false
   push:
     branches: [main]
     paths: ["collectors/**", "analysis/**", "tests/**"]
@@ -12,6 +18,7 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  issues: write
 
 concurrency:
   group: collect
@@ -73,3 +80,33 @@ jobs:
           path: site
       - id: deploy
         uses: actions/deploy-pages@v4
+
+  # Weekly digest: writes reports/weekly/<date>.md and posts it as an issue (GitHub emails watchers).
+  digest:
+    needs: collect
+    if: ${{ !cancelled() && (github.event.schedule == '45 6 * * 1' || inputs.digest) }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Write digest
+        id: write
+        run: echo "path=$(python -m analysis.digest)" >> "$GITHUB_OUTPUT"
+      - name: Commit digest
+        run: |
+          git config user.name "price-collector"
+          git config user.email "actions@users.noreply.github.com"
+          git add reports/weekly
+          git diff --cached --quiet || git commit -m "digest: week to $(date -u +%F)"
+          git push
+      - name: Post as issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create digest --color 2f6fd6 --description "Weekly price digest" 2>/dev/null || true
+          gh issue create --title "Compute prices: week to $(date -u '+%b %-d, %Y')" \
+            --label digest --body-file "${{ steps.write.outputs.path }}"
