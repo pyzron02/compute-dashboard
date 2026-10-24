@@ -8,6 +8,8 @@ Writes:
   data/raw/nebius/<date>.json.gz       current prices and history, untouched
   data/tidy/cloud_prices.csv           today's spot price per region x GPU (source=nebius)
   data/tidy/nebius_spot_hourly.csv     hourly average spot price per region x GPU
+  data/tidy/nebius_spot_15min.csv      price at the end of each 15-minute step, last 7 days
+                                       (the API's limit), appended so history keeps growing
 
 Usage: python -m collectors.nebius [--date YYYY-MM-DD] [--days 30] [--data-dir data]
 """
@@ -92,7 +94,7 @@ def snapshot_rows(items, date):
     return rows, skipped
 
 
-def hourly_rows(series):
+def series_rows(series):
     rows = []
     for s in series:
         platform = s.get("computeInstance", {}).get("platform", "")
@@ -120,32 +122,43 @@ def main(argv=None):
     data = Path(args.data_dir)
 
     current = list(paged(API, {"pageSize": 100}))
-    # The API rejects a start time older than 30 days, so stay a few minutes inside it.
-    start = dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=min(args.days, 30)) + dt.timedelta(minutes=5)
-    series = list(paged(API + "/list-series", {
-        "filters.startTime": start.strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "aggregation.granularity": "GRANULARITY_HOUR_1",
-        "aggregation.method": "METHOD_AVG_PRICE",
-        "pageSize": 100,
-    }))
+    now = dt.datetime.now(dt.timezone.utc)
+
+    def history(days, granularity, method):
+        # The API rejects windows past its limits (30 days; 7 for 15-minute steps), so stay inside them.
+        start = now - dt.timedelta(days=days) + dt.timedelta(minutes=5)
+        return list(paged(API + "/list-series", {
+            "filters.startTime": start.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "aggregation.granularity": granularity,
+            "aggregation.method": method,
+            "pageSize": 100,
+        }))
+
+    series = history(min(args.days, 30), "GRANULARITY_HOUR_1", "METHOD_AVG_PRICE")
+    series_15m = history(7, "GRANULARITY_MINUTE_15", "METHOD_LAST_PRICE")
 
     raw_path = data / "raw" / "nebius" / f"{args.date}.json.gz"
     raw_path.parent.mkdir(parents=True, exist_ok=True)
     with gzip.open(raw_path, "wt") as f:
-        json.dump({"current": current, "series": series}, f)
+        json.dump({"current": current, "series": series, "series_15m": series_15m}, f)
 
     rows, skipped = snapshot_rows(current, args.date)
     if not rows:
         sys.exit("No Nebius spot prices parsed; refusing to write an empty snapshot")
     append_tidy(data / "tidy" / "cloud_prices.csv", rows)
 
-    hourly = hourly_rows(series)
+    hourly = series_rows(series)
     append_tidy(data / "tidy" / "nebius_spot_hourly.csv", hourly, fields=HOURLY_FIELDS,
+                key=("timestamp", "region", "platform"))
+
+    quarter = series_rows(series_15m)
+    append_tidy(data / "tidy" / "nebius_spot_15min.csv", quarter, fields=HOURLY_FIELDS,
                 key=("timestamp", "region", "platform"))
 
     if skipped:
         print("Skipped non-GPU or non-USD items: " + ", ".join(sorted(skipped)), file=sys.stderr)
-    print(f"Wrote {len(rows)} snapshot rows and {len(hourly)} hourly points", file=sys.stderr)
+    print(f"Wrote {len(rows)} snapshot rows, {len(hourly)} hourly and {len(quarter)} 15-minute points",
+          file=sys.stderr)
 
 
 if __name__ == "__main__":

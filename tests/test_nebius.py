@@ -22,7 +22,7 @@ class NebiusTest(unittest.TestCase):
         self.assertIsNone(nebius.gpu_model("cpu-d3"))
 
     def test_hourly_rows_and_rerun_dedupe(self):
-        hourly = nebius.hourly_rows(FIXTURE["series"])
+        hourly = nebius.series_rows(FIXTURE["series"])
         self.assertEqual(len(hourly), 2)
         with tempfile.TemporaryDirectory() as d:
             path = Path(d) / "h.csv"
