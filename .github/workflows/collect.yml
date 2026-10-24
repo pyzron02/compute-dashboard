@@ -6,10 +6,16 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["collectors/**", "tests/**"]
+    paths: ["collectors/**", "analysis/**", "tests/**"]
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: collect
+  cancel-in-progress: false
 
 jobs:
   collect:
@@ -31,18 +37,39 @@ jobs:
         if: github.event_name != 'push'
         continue-on-error: true
         run: python -m collectors.nebius
-      - name: Build report
+      - name: Build report and dashboard data
         if: github.event_name != 'push'
-        run: python -m analysis.report
+        run: |
+          python -m analysis.report
+          python -m analysis.build_site
       - name: Commit new data
         if: github.event_name != 'push'
         run: |
           git config user.name "price-collector"
           git config user.email "actions@users.noreply.github.com"
-          git add data reports
+          git add data reports site/data.json
           git diff --cached --quiet || git commit -m "data: prices for $(date -u +%F)"
           git push
       # Collectors may fail without blocking each other, but the run still goes red.
       - name: Fail if any collector failed
         if: steps.azure.outcome == 'failure' || steps.nebius.outcome == 'failure'
         run: exit 1
+
+  # Publishes site/ to GitHub Pages. Needs Settings > Pages > Source set to "GitHub Actions".
+  pages:
+    needs: collect
+    # Publish even if one collector failed: the other sources' data is still fresh.
+    if: ${{ !cancelled() && github.event_name != 'push' }}
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4

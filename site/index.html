@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Compute Prices</title>
+<link rel="icon" href="data:,">
+<meta name="description" content="Daily GPU rental prices and scarcity signals from public cloud pricing APIs.">
+<style>
+  :root {
+    --bg: #fbfbfa; --panel: #ffffff; --ink: #1d1d1b; --quiet: #6b6b66; --line: #e6e5e0;
+    --accent: #2f6fd6; --accent-soft: rgba(47,111,214,.12);
+    --tight: #b4432f; --balanced: #a87512; --loose: #2f7d4f;
+    --grid: rgba(0,0,0,.07); --series-1: #2f6fd6; --series-2: #8fb0e8; --series-3: #9a9a92; --series-4: #c9c8c0;
+    --gpu-B300: #1f4fa8; --gpu-B200: #4f8fe6; --gpu-GB200: #7a5bc4; --gpu-H200: #c07a1a; --gpu-H100: #2f7d4f;
+    --gpu-MI300X: #b4432f; --gpu-A100: #8a8a82; --gpu-RTX: #a05a8c;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #161615; --panel: #1f1f1d; --ink: #ecebe6; --quiet: #a3a29b; --line: #34332f;
+      --accent: #7aa7f0; --accent-soft: rgba(122,167,240,.16);
+      --tight: #e58a76; --balanced: #e0b25a; --loose: #7cc79a;
+      --grid: rgba(255,255,255,.08); --series-1: #7aa7f0; --series-2: #3d6db8; --series-3: #a3a29b; --series-4: #5f5e58;
+      --gpu-B300: #6f9cf0; --gpu-B200: #9cc0f7; --gpu-GB200: #b39cf0; --gpu-H200: #e3a55a; --gpu-H100: #7cc79a;
+      --gpu-MI300X: #e58a76; --gpu-A100: #a3a29b; --gpu-RTX: #d79ac6;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #161615; --panel: #1f1f1d; --ink: #ecebe6; --quiet: #a3a29b; --line: #34332f;
+    --accent: #7aa7f0; --accent-soft: rgba(122,167,240,.16);
+    --tight: #e58a76; --balanced: #e0b25a; --loose: #7cc79a;
+    --grid: rgba(255,255,255,.08); --series-1: #7aa7f0; --series-2: #3d6db8; --series-3: #a3a29b; --series-4: #5f5e58;
+    --gpu-B300: #6f9cf0; --gpu-B200: #9cc0f7; --gpu-GB200: #b39cf0; --gpu-H200: #e3a55a; --gpu-H100: #7cc79a;
+    --gpu-MI300X: #e58a76; --gpu-A100: #a3a29b; --gpu-RTX: #d79ac6;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 1040px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 26px; margin: 0 0 4px; letter-spacing: -.01em; }
+  h2 { font-size: 18px; margin: 40px 0 4px; }
+  .sub, .note { color: var(--quiet); font-size: 13px; }
+  .note { margin: 6px 0 0; }
+  a { color: var(--accent); }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-top: 20px; }
+  .tile { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+  .tile .gpu { font-weight: 600; }
+  .tile .price { font-size: 24px; font-weight: 600; margin: 4px 0 0; font-variant-numeric: tabular-nums; }
+  .tile .unit { font-size: 12px; color: var(--quiet); }
+  .tile .row { display: flex; justify-content: space-between; font-size: 13px; margin-top: 6px; color: var(--quiet); }
+  .badge { display: inline-block; font-size: 12px; font-weight: 600; border-radius: 999px; padding: 1px 8px; margin-left: 6px; }
+  .badge.tight { color: var(--tight); background: color-mix(in srgb, var(--tight) 14%, transparent); }
+  .badge.balanced { color: var(--balanced); background: color-mix(in srgb, var(--balanced) 14%, transparent); }
+  .badge.loose { color: var(--loose); background: color-mix(in srgb, var(--loose) 14%, transparent); }
+  .up { color: var(--tight); } .down { color: var(--loose); }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; margin-top: 12px; }
+  .chart { position: relative; height: 340px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 4px; }
+  .controls button { font: inherit; font-size: 13px; padding: 4px 12px; border-radius: 999px; cursor: pointer;
+                     border: 1px solid var(--line); background: transparent; color: var(--ink); }
+  .controls button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  .scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--quiet); font-weight: 600; white-space: nowrap; }
+  td.num, th.num { text-align: right; }
+  td.best { font-weight: 700; color: var(--accent); }
+  .ok { color: var(--loose); font-weight: 600; } .stale { color: var(--tight); font-weight: 600; }
+  footer { margin-top: 48px; color: var(--quiet); font-size: 12px; }
+  @media (max-width: 560px) { .chart { height: 280px; } h1 { font-size: 22px; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>AI compute prices</h1>
+  <div class="sub" id="asof">Loading…</div>
+  <div class="sub">Free public sources, collected daily. <a href="https://github.com/pyzron02/compute-dashboard">Code and raw data</a> · <a href="#sources">Sources</a></div>
+
+  <div class="tiles" id="tiles"></div>
+  <p class="note">Nebius spot price now (median across its regions) and its change over 7 days. The badge compares spot with on-demand: tight means spot is at least 60% of on-demand, loose means under 35%.</p>
+
+  <h2>Scarcity: spot price as a share of on-demand</h2>
+  <div class="sub">The closer to 100%, the less idle capacity a provider has for that GPU.</div>
+  <div class="panel"><div class="chart"><canvas id="scarcity" aria-label="Spot price as a share of on-demand by GPU"></canvas></div></div>
+  <p class="note" id="scarcity-note"></p>
+
+  <h2>Nebius spot price by region</h2>
+  <div class="sub">Hourly average, USD per GPU-hour. Dashed lines mark events.</div>
+  <div class="controls" id="gpu-buttons" role="group" aria-label="GPU"></div>
+  <div class="panel"><div class="chart"><canvas id="regional" aria-label="Nebius hourly spot price by region"></canvas></div></div>
+  <p class="note" id="events-note"></p>
+
+  <h2>Prices by provider and tier</h2>
+  <div class="controls" id="unit-buttons" role="group" aria-label="Unit">
+    <button type="button" data-unit="usd" aria-pressed="true">$ per GPU-hour</button>
+    <button type="button" data-unit="usd_per_pflop" aria-pressed="false">$ per PFLOP-hour (performance-adjusted)</button>
+  </div>
+  <div class="panel scroll"><table id="prices"></table></div>
+  <p class="note" id="prices-note"></p>
+
+  <h2>Data health</h2>
+  <div class="panel scroll"><table id="health"></table></div>
+
+  <h2 id="sources">Sources</h2>
+  <div class="sub">Where every series on this page comes from.</div>
+  <div class="panel scroll"><table id="source-table"></table></div>
+
+  <footer>List prices are what anyone can pay; large buyers sign private contracts below them. Medians across regions move when a provider adds or removes a region, so check the regional chart before reading a median move as a market move.</footer>
+</main>
+
+<script src="vendor/chart-4.4.1.umd.js"></script>
+<script>
+(async function () {
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const money = (v, d = 2) => v == null ? '–' : '$' + v.toFixed(d);
+  const pct = v => v == null ? '–' : (v >= 0 ? '+' : '') + Math.round(v * 100) + '%';
+  const share = v => v == null ? '–' : Math.round(v * 100) + '%';
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const dayLabel = ms => { const d = new Date(ms); return months[d.getUTCMonth()] + ' ' + d.getUTCDate(); };
+  const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  let data;
+  try {
+    data = await (await fetch('data.json', { cache: 'no-store' })).json();
+  } catch (e) {
+    document.getElementById('asof').textContent = 'Could not load data.json.';
+    return;
+  }
+  const gen = new Date(data.generated);
+  document.getElementById('asof').textContent =
+    'Updated ' + dayLabel(gen.getTime()) + ', ' + gen.getUTCFullYear() + ' at ' + data.generated.slice(11, 16) + ' UTC';
+
+  // Tiles
+  document.getElementById('tiles').innerHTML = data.tiles.map(t => `
+    <div class="tile">
+      <div class="gpu">${esc(t.gpu)}${t.status ? `<span class="badge ${t.status}">${t.status}</span>` : ''}</div>
+      <div class="price">${money(t.spot)}<span class="unit"> /GPU-hr spot</span></div>
+      <div class="row"><span>7 days</span><span class="${t.change_7d > 0 ? 'up' : t.change_7d < 0 ? 'down' : ''}">${pct(t.change_7d)}</span></div>
+      <div class="row"><span>Spot / on-demand</span><span>${share(t.nebius_ratio)}</span></div>
+      <div class="row"><span>Regions</span><span>${t.regions}</span></div>
+    </div>`).join('');
+
+  Chart.defaults.font.family = getComputedStyle(document.body).fontFamily;
+  Chart.defaults.color = css('--quiet');
+  Chart.defaults.borderColor = css('--grid');
+
+  const palette = [css('--series-1'), css('--series-2'), css('--series-3'), css('--series-4'), css('--accent')];
+  const gpuColor = g => css('--gpu-' + (g.startsWith('RTX') ? 'RTX' : g)) || css('--quiet');
+  const gpuOrder = g => { const i = data.gpu_order.indexOf(g); return i < 0 ? 99 : i; };
+
+  // Event lines, drawn on any time-axis chart.
+  const events = (data.events || []).map(e => ({ ...e, ms: Date.parse(e.date + 'T00:00:00Z') }));
+  const eventLines = {
+    id: 'eventLines',
+    afterDatasetsDraw(chart) {
+      const { ctx, chartArea: a, scales: { x } } = chart;
+      ctx.save();
+      events.forEach((e, i) => {
+        if (e.ms < x.min || e.ms > x.max) return;
+        const px = x.getPixelForValue(e.ms);
+        ctx.strokeStyle = css('--quiet'); ctx.setLineDash([4, 4]); ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(px, a.top); ctx.lineTo(px, a.bottom); ctx.stroke();
+        ctx.setLineDash([]); ctx.fillStyle = css('--quiet'); ctx.font = '11px ' + Chart.defaults.font.family;
+        ctx.fillText(String(i + 1), px + 4, a.top + 12);
+      });
+      ctx.restore();
+    }
+  };
+  document.getElementById('events-note').innerHTML = events.length
+    ? 'Events: ' + events.map((e, i) => `${i + 1}. ${dayLabel(e.ms)}, <a href="${esc(e.url)}">${esc(e.label)}</a>`).join(' · ')
+    : '';
+
+  const timeAxis = (lo, hi) => ({ type: 'linear', min: lo, max: hi, ticks: { callback: v => dayLabel(v), maxTicksLimit: 7 }, grid: { display: false } });
+
+  // Scarcity chart: one line per GPU for Nebius, points for Azure.
+  const scar = data.scarcity;
+  const scarGpus = [...new Set(scar.map(s => s.gpu))].sort((a, b) => gpuOrder(a) - gpuOrder(b));
+  const scarSets = [];
+  scarGpus.forEach(g => {
+    const color = gpuColor(g);
+    const nb = scar.filter(s => s.provider === 'Nebius' && s.gpu === g);
+    const az = scar.filter(s => s.provider === 'Azure' && s.gpu === g);
+    if (nb.length) scarSets.push({ label: g + ' · Nebius', data: nb.map(s => ({ x: Date.parse(s.date + 'T12:00:00Z'), y: s.ratio * 100, s })),
+      borderColor: color, backgroundColor: color, borderWidth: g === 'B200' || g === 'B300' ? 2.5 : 1.5, pointRadius: 2, tension: .2 });
+    if (az.length) scarSets.push({ label: g + ' · Azure', data: az.map(s => ({ x: Date.parse(s.date + 'T12:00:00Z'), y: s.ratio * 100, s })),
+      borderColor: color, backgroundColor: color, showLine: az.length > 1, pointStyle: 'rectRot', pointRadius: 6, borderDash: [5, 4] });
+  });
+  const scarX = scar.map(s => Date.parse(s.date + 'T12:00:00Z'));
+  new Chart(document.getElementById('scarcity'), {
+    type: 'line', data: { datasets: scarSets }, plugins: [eventLines],
+    options: {
+      maintainAspectRatio: false, interaction: { mode: 'nearest', intersect: false },
+      scales: { x: timeAxis(Math.min(...scarX) - 432e5, Math.max(...scarX) + 432e5), y: { min: 0, max: 110, ticks: { callback: v => v + '%', stepSize: 20 } } },
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, usePointStyle: true } },
+        tooltip: { callbacks: { label: c => `${c.dataset.label}: ${Math.round(c.parsed.y)}% (spot ${money(c.raw.s.spot)} vs on-demand ${money(c.raw.s.on_demand)})` } }
+      }
+    }
+  });
+  const azDays = new Set(scar.filter(s => s.provider === 'Azure').map(s => s.date)).size;
+  document.getElementById('scarcity-note').textContent =
+    `Nebius lines: daily median spot over the on-demand list price, from ${data.market_start}, when Nebius spot prices started moving. ` +
+    `Azure diamonds: median spot over median on-demand across regions (${azDays} day${azDays === 1 ? '' : 's'} of history so far; Azure lists H200 and GB200 spot at the full on-demand price).`;
+
+  // Regional chart with a GPU switcher.
+  const regional = data.regional;
+  const regGpus = [...new Set(regional.map(s => s.gpu))].sort((a, b) => gpuOrder(a) - gpuOrder(b));
+  let regChart;
+  const drawRegional = gpu => {
+    const sets = regional.filter(s => s.gpu === gpu).map((s, i) => ({
+      label: s.region, data: s.points.map(([t, v]) => ({ x: Date.parse(t), y: v })),
+      borderColor: palette[i % palette.length], backgroundColor: palette[i % palette.length],
+      borderWidth: 1.5, pointRadius: 0, stepped: true
+    }));
+    const xs = sets.flatMap(d => d.data.map(p => p.x));
+    if (regChart) {
+      regChart.data.datasets = sets;
+      regChart.options.scales.x.min = Math.min(...xs); regChart.options.scales.x.max = Math.max(...xs);
+      regChart.update(); return;
+    }
+    regChart = new Chart(document.getElementById('regional'), {
+      type: 'line', data: { datasets: sets }, plugins: [eventLines],
+      options: {
+        maintainAspectRatio: false, interaction: { mode: 'nearest', axis: 'x', intersect: false },
+        scales: { x: timeAxis(Math.min(...xs), Math.max(...xs)), y: { beginAtZero: true, ticks: { callback: v => '$' + v } } },
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10 } },
+          tooltip: { callbacks: { title: i => new Date(i[0].parsed.x).toISOString().slice(0, 16).replace('T', ' ') + ' UTC',
+                                  label: c => `${c.dataset.label}: ${money(c.parsed.y)}` } }
+        }
+      }
+    });
+  };
+  const gpuButtons = document.getElementById('gpu-buttons');
+  gpuButtons.innerHTML = regGpus.map((g, i) => `<button type="button" data-gpu="${esc(g)}" aria-pressed="${i === 0}">${esc(g)}</button>`).join('');
+  gpuButtons.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    gpuButtons.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    drawRegional(b.dataset.gpu);
+  });
+  if (regGpus.length) drawRegional(regGpus[0]);
+
+  // Price table with a unit toggle; the cheapest cell per row is highlighted.
+  const cols = [
+    ['azure_on_demand', 'Azure on-demand'], ['azure_reserved_3y', 'Azure 3-yr reserved'], ['azure_spot', 'Azure spot'],
+    ['nebius_on_demand', 'Nebius on-demand'], ['nebius_spot', 'Nebius spot']
+  ];
+  const drawPrices = unit => {
+    const rows = data.prices.rows.filter(r => unit === 'usd' || r.pflops);
+    const head = `<tr><th>GPU</th>${unit === 'usd_per_pflop' ? '<th class="num">Dense BF16 PFLOP/s</th>' : ''}${cols.map(c => `<th class="num">${c[1]}</th>`).join('')}</tr>`;
+    const body = rows.map(r => {
+      const vals = cols.map(c => r[unit][c[0]]);
+      const best = Math.min(...vals.filter(v => v != null));
+      return `<tr><td>${esc(r.gpu)}</td>${unit === 'usd_per_pflop' ? `<td class="num">${r.pflops.toFixed(2)}</td>` : ''}${
+        vals.map(v => `<td class="num${v === best ? ' best' : ''}">${money(v)}</td>`).join('')}</tr>`;
+    }).join('');
+    document.getElementById('prices').innerHTML = head + body;
+    document.getElementById('prices-note').textContent = unit === 'usd'
+      ? `Medians across regions. Azure snapshot ${data.prices.azure_date}; Nebius spot snapshot ${data.prices.nebius_date}; Nebius on-demand from its pricing page. Bold = cheapest option for that GPU.`
+      : 'Price divided by dense BF16 tensor throughput (Epoch AI), so GPUs of different speeds compare directly. Azure H100 includes some H100 NVL VMs, which are slower than the SXM figure used here, so their true cost per PFLOP is a little higher.';
+  };
+  const unitButtons = document.getElementById('unit-buttons');
+  unitButtons.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    unitButtons.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    drawPrices(b.dataset.unit);
+  });
+  drawPrices('usd');
+
+  // Data health
+  document.getElementById('health').innerHTML =
+    '<tr><th>Feed</th><th>Status</th><th>Latest</th><th class="num">Days collected</th><th class="num">Rows</th><th>Regions per GPU</th></tr>' +
+    data.health.map(h => `<tr><td>${esc(h.source)}</td><td class="${h.status}">${h.status}</td><td>${esc(h.last_snapshot)}</td>
+      <td class="num">${h.days_collected}</td><td class="num">${h.rows_latest.toLocaleString('en-US')}</td>
+      <td>${Object.entries(h.regions_per_gpu).map(([g, n]) => `${esc(g)} ${n}`).join(', ') || '–'}</td></tr>`).join('');
+
+  // Sources
+  document.getElementById('source-table').innerHTML =
+    '<tr><th>Series</th><th>Origin</th><th>Collected by</th><th>Cadence</th></tr>' +
+    data.sources.map(s => `<tr><td>${esc(s.name)}</td><td><a href="${esc(s.url)}">${esc(s.origin)}</a></td>
+      <td><a href="https://github.com/pyzron02/compute-dashboard/blob/main/${esc(s.collector)}"><code>${esc(s.collector)}</code></a></td><td>${esc(s.cadence)}</td></tr>`).join('');
+})();
+</script>
+</body>
+</html>

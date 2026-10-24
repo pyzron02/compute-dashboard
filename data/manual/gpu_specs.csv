@@ -1,0 +1,8 @@
+gpu_model,epoch_hardware_name,dense_bf16_tflops,url
+GB200,NVIDIA GB200,2500,https://epoch.ai/data/machine-learning-hardware
+B300,NVIDIA B300 (Blackwell Ultra),2250,https://epoch.ai/data/machine-learning-hardware
+B200,NVIDIA B200,2250,https://epoch.ai/data/machine-learning-hardware
+H200,NVIDIA H200 SXM,989.5,https://epoch.ai/data/machine-learning-hardware
+H100,NVIDIA H100 SXM5 80GB,989.5,https://epoch.ai/data/machine-learning-hardware
+MI300X,AMD Instinct MI300X,1307.4,https://epoch.ai/data/machine-learning-hardware
+A100,NVIDIA A100 SXM4 80 GB,312,https://epoch.ai/data/machine-learning-hardware

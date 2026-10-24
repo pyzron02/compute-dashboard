@@ -32,6 +32,19 @@ fix can be replayed over history, and writes normalised rows to `data/tidy/`.
 | `usd_per_vm_hour` | Linux list price; reservations spread evenly over the term |
 | `usd_per_gpu_hour` | `usd_per_vm_hour / gpus` |
 
+## Dashboard
+
+`site/index.html` is a static page that draws everything from `site/data.json`, which
+`analysis/build_site.py` rebuilds after each daily run. The workflow then publishes `site/` to
+GitHub Pages: https://pyzron02.github.io/compute-dashboard/ (enable once under
+Settings → Pages → Source: GitHub Actions). Chart.js 4.4.1 is vendored in `site/vendor/` (MIT).
+
+Hand-maintained inputs, each row with its source URL:
+`data/manual/list_prices.csv` (Nebius on-demand), `data/manual/gpu_specs.csv` (dense BF16
+throughput from Epoch AI), `data/manual/events.csv` (chart annotations).
+
+Preview locally: `python -m analysis.build_site && python -m http.server -d site`.
+
 ## Running
 
 ```
