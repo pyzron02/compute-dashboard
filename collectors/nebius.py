@@ -18,10 +18,10 @@ import gzip
 import json
 import sys
 import urllib.parse
-import urllib.request
+
 from pathlib import Path
 
-from collectors.common import append_tidy
+from collectors.common import append_tidy, open_url
 
 API = "https://api.nebius.cloud/billing/v1alpha1/spot-price"
 HOURLY_FIELDS = ["timestamp", "source", "region", "platform", "gpu_model", "usd_per_gpu_hour"]
@@ -41,7 +41,7 @@ PLATFORMS = [
 
 def get(url, params):
     query = urllib.parse.urlencode(params, doseq=True)
-    with urllib.request.urlopen(f"{url}?{query}", timeout=60) as resp:
+    with open_url(f"{url}?{query}") as resp:
         return json.load(resp)
 
 

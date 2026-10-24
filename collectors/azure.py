@@ -15,10 +15,9 @@ import re
 import sys
 import time
 import urllib.parse
-import urllib.request
 from pathlib import Path
 
-from collectors.common import append_tidy
+from collectors.common import append_tidy, open_url
 
 API = "https://prices.azure.com/api/retail/prices"
 
@@ -50,7 +49,7 @@ def fetch_items(gpu_substring, sleep=0.2):
     url = API + "?" + urllib.parse.urlencode({"$filter": flt})
     items = []
     while url:
-        with urllib.request.urlopen(url, timeout=60) as resp:
+        with open_url(url) as resp:
             page = json.load(resp)
         items.extend(page.get("Items", []))
         url = page.get("NextPageLink")

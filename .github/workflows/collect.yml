@@ -22,18 +22,27 @@ jobs:
       - name: Test
         run: python -m unittest -v
       - name: Azure retail prices
+        id: azure
         if: github.event_name != 'push'
         continue-on-error: true
         run: python -m collectors.azure
       - name: Nebius spot prices
+        id: nebius
         if: github.event_name != 'push'
         continue-on-error: true
         run: python -m collectors.nebius
+      - name: Build report
+        if: github.event_name != 'push'
+        run: python -m analysis.report
       - name: Commit new data
         if: github.event_name != 'push'
         run: |
           git config user.name "price-collector"
           git config user.email "actions@users.noreply.github.com"
-          git add data
+          git add data reports
           git diff --cached --quiet || git commit -m "data: prices for $(date -u +%F)"
           git push
+      # Collectors may fail without blocking each other, but the run still goes red.
+      - name: Fail if any collector failed
+        if: steps.azure.outcome == 'failure' || steps.nebius.outcome == 'failure'
+        run: exit 1

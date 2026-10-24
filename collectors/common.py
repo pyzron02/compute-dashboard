@@ -1,6 +1,7 @@
 """Helpers shared by every collector."""
 
 import csv
+import urllib.request
 
 # Columns of data/tidy/cloud_prices.csv, one row per source x region x SKU x tier per day.
 TIDY_FIELDS = [
@@ -24,3 +25,12 @@ def append_tidy(path, rows, fields=TIDY_FIELDS, key=("date", "source")):
         w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()
         w.writerows(kept + rows)
+
+
+# Some APIs (Nebius) reject urllib's default "Python-urllib" user agent with 403.
+USER_AGENT = "compute-dashboard/1.0 (+https://github.com/pyzron02/compute-dashboard)"
+
+
+def open_url(url, timeout=60):
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/json"})
+    return urllib.request.urlopen(req, timeout=timeout)

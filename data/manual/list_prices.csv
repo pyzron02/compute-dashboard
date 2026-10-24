@@ -1,0 +1,5 @@
+date,source,gpu_model,tier,usd_per_gpu_hour,note,url
+2026-10-24,nebius,B300,on_demand,9.50,HGX B300 list price,https://nebius.com/prices
+2026-10-24,nebius,B200,on_demand,8.50,HGX B200 list price,https://nebius.com/prices
+2026-10-24,nebius,H200,on_demand,5.40,HGX H200 list price,https://nebius.com/prices
+2026-10-24,nebius,H100,on_demand,4.50,HGX H100 list price,https://nebius.com/prices
