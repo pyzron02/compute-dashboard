@@ -140,6 +140,8 @@ def nebius_trends(hourly_rows):
         last = series[-1][1]
         v7, v30 = value_at(7), value_at(29)
         values = [v for _, v in series]
+        # Nebius held one fixed rate before switching to market spot pricing; find the switch.
+        moved = next((h for h, v in series if v != series[0][1]), None)
         regions_now = by_gpu_hour[m][hours[-1]]
         stats.append({
             "gpu": m,
@@ -152,6 +154,7 @@ def nebius_trends(hourly_rows):
             "regions": len(regions_now),
             "spread": (min(regions_now), max(regions_now)),
             "points": len(series),
+            "moved": moved,
         })
     lines = [
         "| GPU | Latest median spot | 7-day change | 30-day change | 30-day low | 30-day high | Regions now (low to high) |",
@@ -163,6 +166,10 @@ def nebius_trends(hourly_rows):
             f"| {s['gpu']} | {money(s['last'])} | {pct(s['chg7'])} | {pct(s['chg30'])} | {money(s['lo'])} | "
             f"{money(s['hi'])} | {s['regions']} ({money(lo)} to {money(hi)}) |"
         )
+    first_moves = sorted(s["moved"] for s in stats if s["moved"])
+    if first_moves:
+        lines += ["", f"Prices held one fixed rate until {first_moves[0][:10]}, when market-based spot pricing "
+                  "appears to start. Changes measured across that date mix the old fixed rate with market prices."]
     return "\n".join(lines), stats
 
 

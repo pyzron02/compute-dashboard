@@ -1,6 +1,6 @@
 # Compute price report
 
-Generated 2026-10-24 06:40 UTC from `data/`. Prices are USD per GPU-hour, Linux, medians across regions unless stated.
+Generated 2026-10-24 06:41 UTC from `data/`. Prices are USD per GPU-hour, Linux, medians across regions unless stated.
 
 ## 1. Price levels by provider and tier
 
@@ -44,6 +44,8 @@ Hourly average spot price, median across regions.
 | H200 | $2.10 | +120% | -14% | $0.79 | $4.50 | 3 ($0.95 to $4.04) |
 | H100 | $0.95 | +20% | -56% | $0.79 | $2.15 | 1 ($0.95 to $0.95) |
 | RTX PRO 6000 | $1.08 | +16% | +14% | $0.79 | $1.38 | 3 ($0.94 to $1.54) |
+
+Prices held one fixed rate until 2026-10-08, when market-based spot pricing appears to start. Changes measured across that date mix the old fixed rate with market prices.
 
 ## 4. Azure over time
 
