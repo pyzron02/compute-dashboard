@@ -1,6 +1,6 @@
 # Compute price report
 
-Generated 2026-10-24 08:33 UTC from `data/`. Prices are USD per GPU-hour, Linux, medians across regions unless stated.
+Generated 2026-10-24 08:40 UTC from `data/`. Prices are USD per GPU-hour, Linux, medians across regions unless stated.
 
 ## 1. Price levels by provider and tier
 
