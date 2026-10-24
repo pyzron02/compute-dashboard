@@ -1,0 +1,12 @@
+{
+ "current": [
+  {"skuId":"sku-1","productTitle":"Preemptible NVIDIA® H200 NVLink","region":"eu-north1","computeInstance":{"platform":"gpu-h200-sxm"},"price":{"value":"2.38","currency":"usd","unitTitle":"GPU hour"},"effectiveTime":"2026-10-23T11:11:00Z"},
+  {"skuId":"sku-2","productTitle":"Preemptible NVIDIA® H100 NVLink","region":"eu-north1","computeInstance":{"platform":"gpu-h100-sxm"},"price":{"value":"0.79","currency":"usd","unitTitle":"GPU hour"},"effectiveTime":"2026-10-09T17:01:00Z"},
+  {"skuId":"sku-3","productTitle":"Preemptible NVIDIA® B200 NVLink","region":"me-west1","computeInstance":{"platform":"gpu-b200-sxm-a"},"price":{"value":"6","currency":"usd","unitTitle":"GPU hour"},"effectiveTime":"2026-10-23T14:06:00Z"},
+  {"skuId":"sku-4","productTitle":"Preemptible CPU","region":"eu-north1","computeInstance":{"platform":"cpu-d3"},"price":{"value":"0.01","currency":"usd","unitTitle":"vCPU hour"},"effectiveTime":"2026-10-23T14:06:00Z"}
+ ],
+ "series": [
+  {"skuId":"sku-1","region":"eu-north1","computeInstance":{"platform":"gpu-h200-sxm"},"currency":"usd","unitTitle":"GPU hour","points":[{"timestamp":"2026-10-23T10:00:00Z","value":"2.10"},{"timestamp":"2026-10-23T11:00:00Z","value":"2.38"}]},
+  {"skuId":"sku-4","region":"eu-north1","computeInstance":{"platform":"cpu-d3"},"currency":"usd","unitTitle":"vCPU hour","points":[{"timestamp":"2026-10-23T10:00:00Z","value":"0.01"}]}
+ ]
+}

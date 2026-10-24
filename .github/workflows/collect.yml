@@ -23,7 +23,12 @@ jobs:
         run: python -m unittest -v
       - name: Azure retail prices
         if: github.event_name != 'push'
+        continue-on-error: true
         run: python -m collectors.azure
+      - name: Nebius spot prices
+        if: github.event_name != 'push'
+        continue-on-error: true
+        run: python -m collectors.nebius
       - name: Commit new data
         if: github.event_name != 'push'
         run: |

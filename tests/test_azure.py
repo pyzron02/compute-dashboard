@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from collectors import azure
+from collectors import azure, common
 
 FIXTURE = Path(__file__).parent / "fixtures" / "azure_items.json"
 
@@ -53,9 +53,9 @@ class AppendTidyTest(unittest.TestCase):
             path = Path(d) / "cloud_prices.csv"
             day1, _ = azure.tidy_rows(items, "2026-10-22")
             day2, _ = azure.tidy_rows(items, "2026-10-23")
-            azure.append_tidy(path, day1)
-            azure.append_tidy(path, day2)
-            azure.append_tidy(path, day2)
+            common.append_tidy(path, day1)
+            common.append_tidy(path, day2)
+            common.append_tidy(path, day2)
             with path.open() as f:
                 rows = list(csv.DictReader(f))
         self.assertEqual(len(rows), 2 * len(day1))

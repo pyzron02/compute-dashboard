@@ -8,7 +8,6 @@ Usage: python -m collectors.azure [--date YYYY-MM-DD] [--data-dir data]
 """
 
 import argparse
-import csv
 import datetime as dt
 import gzip
 import json
@@ -18,6 +17,8 @@ import time
 import urllib.parse
 import urllib.request
 from pathlib import Path
+
+from collectors.common import append_tidy
 
 API = "https://prices.azure.com/api/retail/prices"
 
@@ -38,10 +39,6 @@ GPUS_PER_VM = [
 ]
 
 HOURS_PER_YEAR = 8760
-TIDY_FIELDS = [
-    "date", "source", "region", "sku", "gpu_model", "gpus", "tier",
-    "usd_per_vm_hour", "usd_per_gpu_hour",
-]
 
 
 def fetch_items(gpu_substring, sleep=0.2):
@@ -137,20 +134,6 @@ def tidy_rows(items, date):
             "usd_per_gpu_hour": round(vm_hour / gpus, 6),
         })
     return rows, unknown
-
-
-def append_tidy(path, rows):
-    """Append rows, replacing any rows already stored for the same date and source."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    dates = {(r["date"], r["source"]) for r in rows}
-    kept = []
-    if path.exists():
-        with path.open(newline="") as f:
-            kept = [r for r in csv.DictReader(f) if (r["date"], r["source"]) not in dates]
-    with path.open("w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=TIDY_FIELDS)
-        w.writeheader()
-        w.writerows(kept + rows)
 
 
 def main(argv=None):
