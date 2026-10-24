@@ -28,9 +28,9 @@ GPU_MODELS = ["GB300", "GB200", "B200", "H200", "H100", "MI300X", "A100"]
 # GPUs per VM, matched against armSkuName. First match wins, so specific patterns go first.
 GPUS_PER_VM = [
     (r"^Standard_ND\d+.*_(H100|H200|MI300X)_v\d", 8),
-    (r"^Standard_ND96a(m)?sr_A100_v4$", 8),
-    (r"^Standard_ND\d+isr_G?B\d00_v6$", 4),
-    (r"^Standard_NC40ads_H100_v5$", 1),
+    (r"^Standard_ND96am?sr?_A100_v4$", 8),
+    (r"^Standard_ND\d+isrf?_(NDR_)?G?B\d00_v6$", 4),
+    (r"^Standard_NCC?40ads_H100_v5$", 1),
     (r"^Standard_NC80adis_H100_v5$", 2),
     (r"^Standard_NC24ads_A100_v4$", 1),
     (r"^Standard_NC48ads_A100_v4$", 2),
@@ -117,6 +117,8 @@ def tidy_rows(items, date):
         if tier is None:
             continue
         sku = item["armSkuName"]
+        if not sku.startswith("Standard_"):
+            continue  # dedicated hosts, not VMs
         gpus = gpus_per_vm(sku)
         if gpus is None:
             unknown.add(sku)

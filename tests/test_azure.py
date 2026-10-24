@@ -16,7 +16,7 @@ class TidyRowsTest(unittest.TestCase):
         self.by = {(r["sku"], r["tier"]): r for r in self.rows}
 
     def test_skips_windows_and_devtest(self):
-        self.assertEqual(len(self.rows), 8)
+        self.assertEqual(len(self.rows), 9)
 
     def test_on_demand_per_gpu(self):
         r = self.by[("Standard_ND96isr_H100_v5", "on_demand")]
@@ -39,6 +39,8 @@ class TidyRowsTest(unittest.TestCase):
         self.assertEqual(self.by[("Standard_NC80adis_H100_v5", "on_demand")]["usd_per_gpu_hour"], 6.98)
         gb = self.by[("Standard_ND128isr_GB200_v6", "on_demand")]
         self.assertEqual((gb["gpu_model"], gb["gpus"]), ("GB200", 4))
+        # Azure's live SKU name carries an NDR (InfiniBand) infix
+        self.assertEqual(self.by[("Standard_ND128isr_NDR_GB200_v6", "on_demand")]["usd_per_gpu_hour"], 30.0)
 
     def test_unknown_sku_reported_not_guessed(self):
         self.assertEqual(self.unknown, {"Standard_NV_Mystery_H100"})
