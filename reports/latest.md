@@ -1,6 +1,6 @@
 # Compute price report
 
-Generated 2026-10-26 13:05 UTC from `data/`. Prices are USD per GPU-hour, Linux, medians across regions unless stated.
+Generated 2026-10-26 13:36 UTC from `data/`. Prices are USD per GPU-hour, Linux, medians across regions unless stated.
 
 ## 1. Price levels by provider and tier
 
@@ -9,8 +9,8 @@ Azure snapshot 2026-10-26; Nebius spot snapshot 2026-10-26; Nebius on-demand fro
 | GPU | Azure on-demand | Azure 3-yr reserved | Azure spot | Nebius on-demand | Nebius spot | Azure ÷ Nebius on-demand |
 | --- | --- | --- | --- | --- | --- | --- |
 | GB200 | $33.53 | $14.75 | $33.53 |  |  |  |
-| B300 |  |  |  | $9.50 | $2.80 |  |
-| B200 |  |  |  | $8.50 | $5.35 |  |
+| B300 |  |  |  | $9.50 | $3.10 |  |
+| B200 |  |  |  | $8.50 | $5.20 |  |
 | H200 | $13.25 | $6.60 | $13.25 | $5.40 | $1.70 | 2.5x |
 | H100 | $11.06 | $5.49 | $2.45 | $4.50 | $0.95 | 2.5x |
 | MI300X | $7.50 | $3.29 | $1.39 |  |  |  |
@@ -28,8 +28,8 @@ A spot price close to the on-demand price means the provider has little idle cap
 | Azure | H100 | 22% |
 | Azure | MI300X | 18% |
 | Azure | A100 | 20% |
-| Nebius | B300 | 29% |
-| Nebius | B200 | 63% |
+| Nebius | B300 | 33% |
+| Nebius | B200 | 61% |
 | Nebius | H200 | 31% |
 | Nebius | H100 | 21% |
 
@@ -39,11 +39,11 @@ Hourly average spot price, median across regions.
 
 | GPU | Latest median spot | 7-day change | 30-day change | 30-day low | 30-day high | Regions now (low to high) |
 | --- | --- | --- | --- | --- | --- | --- |
-| B300 | $2.80 | -70% | -35% | $0.99 | $9.49 | 3 ($0.99 to $9.49) |
-| B200 | $5.28 | +122% | +34% | $0.99 | $6.62 | 2 ($5.00 to $5.55) |
+| B300 | $2.95 | -68% | -31% | $0.99 | $9.49 | 3 ($0.99 to $9.49) |
+| B200 | $5.20 | +119% | +32% | $0.99 | $6.62 | 2 ($4.85 to $5.55) |
 | H200 | $1.70 | +2% | -31% | $0.79 | $4.50 | 3 ($1.10 to $5.39) |
 | H100 | $0.95 | +20% | -56% | $0.79 | $2.15 | 1 ($0.95 to $0.95) |
-| RTX PRO 6000 | $1.38 | +0% | +45% | $0.79 | $1.38 | 3 ($1.38 to $1.64) |
+| RTX PRO 6000 | $1.38 | +0% | +45% | $0.79 | $1.38 | 3 ($1.38 to $1.49) |
 
 Prices held one fixed rate until 2026-10-08, when market-based spot pricing appears to start. Changes measured across that date mix the old fixed rate with market prices.
 
