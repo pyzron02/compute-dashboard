@@ -1547,6 +1547,270 @@ timestamp,source,region,platform,gpu_model,usd_per_gpu_hour
 2026-09-30T11:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,2.45
 2026-09-30T12:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,2.45
 2026-09-30T13:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,2.45
+2026-09-29T14:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-29T15:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-29T16:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-29T17:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-29T18:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-29T19:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-29T20:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-29T21:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-29T22:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-29T23:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-30T00:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-30T01:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-30T02:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-30T03:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-30T04:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-30T05:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-30T06:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-30T07:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-30T08:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-30T09:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-30T10:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-30T11:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-30T12:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-30T13:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-09-29T14:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-29T15:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-29T16:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-29T17:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-29T18:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-29T19:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-29T20:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-29T21:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-29T22:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-29T23:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T00:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T01:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T02:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T03:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T04:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T05:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T06:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T07:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T08:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T09:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T10:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T11:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T12:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T13:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-29T14:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-29T15:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-29T16:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-29T17:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-29T18:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-29T19:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-29T20:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-29T21:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-29T22:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-29T23:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-30T00:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-30T01:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-30T02:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-30T03:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-30T04:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-30T05:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-30T06:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-30T07:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-30T08:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-30T09:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-30T10:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-30T11:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-30T12:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-30T13:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-09-29T14:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-29T15:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-29T16:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-29T17:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-29T18:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-29T19:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-29T20:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-29T21:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-29T22:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-29T23:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-30T00:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-30T01:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-30T02:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-30T03:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-30T04:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-30T05:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-30T06:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-30T07:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-30T08:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-30T09:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-30T10:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-30T11:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-30T12:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-30T13:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-09-29T14:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-29T15:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-29T16:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-29T17:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-29T18:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-29T19:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-29T20:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-29T21:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-29T22:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-29T23:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-30T00:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-30T01:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-30T02:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-30T03:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-30T04:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-30T05:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-30T06:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-30T07:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-30T08:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-30T09:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-30T10:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-30T11:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-30T12:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-30T13:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-09-29T14:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-29T15:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-29T16:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-29T17:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-29T18:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-29T19:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-29T20:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-29T21:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-29T22:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-29T23:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-30T00:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-30T01:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-30T02:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-30T03:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-30T04:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-30T05:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-30T06:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-30T07:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-30T08:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-30T09:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-30T10:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-30T11:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-30T12:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-30T13:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-09-29T14:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-29T15:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-29T16:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-29T17:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-29T18:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-29T19:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-29T20:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-29T21:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-29T22:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-29T23:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T00:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T01:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T02:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T03:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T04:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T05:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T06:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T07:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T08:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T09:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T10:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T11:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T12:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-30T13:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-09-29T14:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-29T15:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-29T16:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-29T17:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-29T18:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-29T19:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-29T20:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-29T21:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-29T22:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-29T23:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-30T00:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-30T01:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-30T02:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-30T03:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-30T04:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-30T05:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-30T06:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-30T07:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-30T08:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-30T09:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-30T10:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-30T11:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-30T12:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-30T13:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-09-29T14:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-29T15:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-29T16:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-29T17:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-29T18:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-29T19:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-29T20:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-29T21:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-29T22:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-29T23:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-30T00:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-30T01:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-30T02:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-30T03:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-30T04:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-30T05:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-30T06:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-30T07:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-30T08:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-30T09:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-30T10:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-30T11:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-30T12:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-30T13:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-09-29T14:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-29T15:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-29T16:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-29T17:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-29T18:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-29T19:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-29T20:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-29T21:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-29T22:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-29T23:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-30T00:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-30T01:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-30T02:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-30T03:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-30T04:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-30T05:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-30T06:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-30T07:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-30T08:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-30T09:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-30T10:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-30T11:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-30T12:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-30T13:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-09-29T14:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-29T15:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-29T16:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-29T17:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-29T18:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-29T19:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-29T20:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-29T21:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-29T22:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-29T23:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-30T00:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-30T01:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-30T02:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-30T03:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-30T04:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-30T05:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-30T06:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-30T07:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-30T08:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-30T09:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-30T10:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-30T11:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-30T12:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-09-30T13:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
 2026-09-30T14:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,2.45
 2026-09-30T15:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,2.45
 2026-09-30T16:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,2.45
@@ -2243,31 +2507,30 @@ timestamp,source,region,platform,gpu_model,usd_per_gpu_hour
 2026-10-29T11:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,2.95
 2026-10-29T12:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,2.95
 2026-10-29T13:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,3.4
-2026-10-29T14:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,3.7
-2026-09-29T14:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-29T15:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-29T16:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-29T17:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-29T18:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-29T19:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-29T20:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-29T21:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-29T22:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-29T23:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-30T00:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-30T01:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-30T02:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-30T03:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-30T04:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-30T05:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-30T06:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-30T07:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-30T08:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-30T09:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-30T10:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-30T11:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-30T12:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
-2026-09-30T13:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
+2026-10-29T14:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,4.0
+2026-10-29T15:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,4.4
+2026-10-29T16:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,4.65
+2026-10-29T17:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,4.9
+2026-10-29T18:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,5.23
+2026-10-29T19:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,5.39
+2026-10-29T20:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,5.39
+2026-10-29T21:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,5.39
+2026-10-29T22:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,5.39
+2026-10-29T23:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,5.39
+2026-10-30T00:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,5.39
+2026-10-30T01:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,5.39
+2026-10-30T02:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,5.39
+2026-10-30T03:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,5.39
+2026-10-30T04:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,5.39
+2026-10-30T05:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,5.39
+2026-10-30T06:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,5.39
+2026-10-30T07:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,5.29
+2026-10-30T08:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,5.29
+2026-10-30T09:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,5.24
+2026-10-30T10:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,5.24
+2026-10-30T11:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,5.39
+2026-10-30T12:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,5.39
+2026-10-30T13:00:00Z,nebius,eu-north1,gpu-h200-sxm,H200,5.39
 2026-09-30T14:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
 2026-09-30T15:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
 2026-09-30T16:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.15
@@ -2964,31 +3227,30 @@ timestamp,source,region,platform,gpu_model,usd_per_gpu_hour
 2026-10-29T11:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,1.35
 2026-10-29T12:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,1.4
 2026-10-29T13:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,1.55
-2026-10-29T14:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,1.7
-2026-09-29T14:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-29T15:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-29T16:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-29T17:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-29T18:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-29T19:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-29T20:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-29T21:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-29T22:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-29T23:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T00:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T01:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T02:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T03:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T04:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T05:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T06:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T07:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T08:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T09:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T10:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T11:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T12:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T13:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-10-29T14:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,1.85
+2026-10-29T15:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.0
+2026-10-29T16:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,1.85
+2026-10-29T17:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,1.85
+2026-10-29T18:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,1.85
+2026-10-29T19:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,1.85
+2026-10-29T20:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,1.7
+2026-10-29T21:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,1.3
+2026-10-29T22:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,1.25
+2026-10-29T23:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,1.1
+2026-10-30T00:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,1.4
+2026-10-30T01:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,1.85
+2026-10-30T02:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.0
+2026-10-30T03:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,2.0
+2026-10-30T04:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,1.7
+2026-10-30T05:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,1.55
+2026-10-30T06:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,1.666666667
+2026-10-30T07:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,1.35
+2026-10-30T08:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,1.05
+2026-10-30T09:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,0.886666667
+2026-10-30T10:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,0.83
+2026-10-30T11:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,0.843333333
+2026-10-30T12:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,0.83
+2026-10-30T13:00:00Z,nebius,eu-north1,gpu-h100-sxm,H100,0.83
 2026-09-30T14:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
 2026-09-30T15:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
 2026-09-30T16:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.95
@@ -3686,30 +3948,29 @@ timestamp,source,region,platform,gpu_model,usd_per_gpu_hour
 2026-10-29T12:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,0.935
 2026-10-29T13:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.086666667
 2026-10-29T14:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
-2026-09-29T14:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-29T15:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-29T16:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-29T17:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-29T18:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-29T19:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-29T20:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-29T21:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-29T22:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-29T23:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-30T00:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-30T01:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-30T02:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-30T03:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-30T04:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-30T05:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-30T06:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-30T07:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-30T08:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-30T09:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-30T10:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-30T11:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-30T12:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
-2026-09-30T13:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
+2026-10-29T15:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-29T16:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-29T17:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-29T18:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-29T19:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-29T20:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-29T21:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-29T22:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-29T23:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T00:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T01:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T02:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T03:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T04:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T05:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T06:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T07:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T08:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T09:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T10:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T11:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T12:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T13:00:00Z,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1.23
 2026-09-30T14:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
 2026-09-30T15:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
 2026-09-30T16:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,2.45
@@ -4406,31 +4667,30 @@ timestamp,source,region,platform,gpu_model,usd_per_gpu_hour
 2026-10-29T11:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.39
 2026-10-29T12:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.39
 2026-10-29T13:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.24
-2026-10-29T14:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.09
-2026-09-29T14:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-29T15:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-29T16:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-29T17:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-29T18:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-29T19:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-29T20:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-29T21:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-29T22:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-29T23:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-30T00:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-30T01:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-30T02:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-30T03:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-30T04:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-30T05:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-30T06:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-30T07:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-30T08:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-30T09:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-30T10:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-30T11:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-30T12:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
-2026-09-30T13:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
+2026-10-29T14:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.24
+2026-10-29T15:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.39
+2026-10-29T16:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.39
+2026-10-29T17:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.24
+2026-10-29T18:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.24
+2026-10-29T19:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.29
+2026-10-29T20:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.24
+2026-10-29T21:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,4.94
+2026-10-29T22:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,4.49
+2026-10-29T23:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,4.49
+2026-10-30T00:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,4.94
+2026-10-30T01:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.24
+2026-10-30T02:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.39
+2026-10-30T03:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.39
+2026-10-30T04:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.24
+2026-10-30T05:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.24
+2026-10-30T06:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.39
+2026-10-30T07:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.39
+2026-10-30T08:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.39
+2026-10-30T09:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.39
+2026-10-30T10:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.24
+2026-10-30T11:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,5.19
+2026-10-30T12:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,4.79
+2026-10-30T13:00:00Z,nebius,eu-west1,gpu-h200-sxm,H200,4.79
 2026-09-30T14:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
 2026-09-30T15:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
 2026-09-30T16:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.3
@@ -5127,31 +5387,30 @@ timestamp,source,region,platform,gpu_model,usd_per_gpu_hour
 2026-10-29T11:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,7.84
 2026-10-29T12:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,7.39
 2026-10-29T13:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,6.79
-2026-10-29T14:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,6.49
-2026-09-29T14:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-29T15:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-29T16:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-29T17:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-29T18:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-29T19:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-29T20:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-29T21:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-29T22:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-29T23:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-30T00:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-30T01:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-30T02:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-30T03:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-30T04:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-30T05:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-30T06:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-30T07:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-30T08:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-30T09:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-30T10:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-30T11:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-30T12:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
-2026-09-30T13:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-10-29T14:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,6.34
+2026-10-29T15:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,6.04
+2026-10-29T16:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,5.74
+2026-10-29T17:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,5.29
+2026-10-29T18:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.84
+2026-10-29T19:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.99
+2026-10-29T20:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,5.44
+2026-10-29T21:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,5.59
+2026-10-29T22:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,5.59
+2026-10-29T23:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,5.29
+2026-10-30T00:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,5.14
+2026-10-30T01:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,5.44
+2026-10-30T02:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,5.29
+2026-10-30T03:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.84
+2026-10-30T04:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,4.84
+2026-10-30T05:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,5.14
+2026-10-30T06:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,5.59
+2026-10-30T07:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,6.04
+2026-10-30T08:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,6.34
+2026-10-30T09:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,6.76
+2026-10-30T10:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,7.0
+2026-10-30T11:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,7.0
+2026-10-30T12:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,7.0
+2026-10-30T13:00:00Z,nebius,eu-west2,gpu-b300-sxm,B300,7.0
 2026-09-30T14:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
 2026-09-30T15:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
 2026-09-30T16:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
@@ -5848,31 +6107,30 @@ timestamp,source,region,platform,gpu_model,usd_per_gpu_hour
 2026-10-29T11:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,4.3
 2026-10-29T12:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,4.25
 2026-10-29T13:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,4.0
-2026-10-29T14:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,4.1
-2026-09-29T14:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-29T15:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-29T16:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-29T17:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-29T18:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-29T19:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-29T20:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-29T21:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-29T22:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-29T23:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-30T00:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-30T01:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-30T02:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-30T03:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-30T04:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-30T05:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-30T06:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-30T07:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-30T08:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-30T09:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-30T10:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-30T11:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-30T12:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-30T13:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-10-29T14:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-10-29T15:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-10-29T16:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-10-29T17:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,3.95
+2026-10-29T18:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,4.25
+2026-10-29T19:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,4.55
+2026-10-29T20:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,5.0
+2026-10-29T21:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,5.3
+2026-10-29T22:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,5.15
+2026-10-29T23:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,4.7
+2026-10-30T00:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,4.25
+2026-10-30T01:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,4.0
+2026-10-30T02:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,4.4
+2026-10-30T03:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,5.0
+2026-10-30T04:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,5.45
+2026-10-30T05:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,5.75
+2026-10-30T06:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,6.0
+2026-10-30T07:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,5.75
+2026-10-30T08:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,5.15
+2026-10-30T09:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,4.55
+2026-10-30T10:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,4.25
+2026-10-30T11:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,4.1
+2026-10-30T12:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,4.25
+2026-10-30T13:00:00Z,nebius,me-west1,gpu-b200-sxm-a,B200,4.55
 2026-09-30T14:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
 2026-09-30T15:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
 2026-09-30T16:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
@@ -6570,30 +6828,29 @@ timestamp,source,region,platform,gpu_model,usd_per_gpu_hour
 2026-10-29T12:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
 2026-10-29T13:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
 2026-10-29T14:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
-2026-09-29T14:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-29T15:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-29T16:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-29T17:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-29T18:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-29T19:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-29T20:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-29T21:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-29T22:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-29T23:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T00:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T01:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T02:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T03:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T04:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T05:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T06:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T07:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T08:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T09:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T10:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T11:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T12:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
-2026-09-30T13:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
+2026-10-29T15:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.0
+2026-10-29T16:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,3.55
+2026-10-29T17:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,3.55
+2026-10-29T18:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,3.6
+2026-10-29T19:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,3.85
+2026-10-29T20:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.3
+2026-10-29T21:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.75
+2026-10-29T22:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,5.2
+2026-10-29T23:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,5.35
+2026-10-30T00:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.9
+2026-10-30T01:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.75
+2026-10-30T02:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.95
+2026-10-30T03:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,5.0
+2026-10-30T04:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.85
+2026-10-30T05:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.7
+2026-10-30T06:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,4.85
+2026-10-30T07:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,5.0
+2026-10-30T08:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,5.0
+2026-10-30T09:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,5.0
+2026-10-30T10:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,5.0
+2026-10-30T11:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,5.0
+2026-10-30T12:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,5.0
+2026-10-30T13:00:00Z,nebius,uk-south1,gpu-b300-sxm,B300,5.0
 2026-09-30T14:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
 2026-09-30T15:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
 2026-09-30T16:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.95
@@ -7291,30 +7548,29 @@ timestamp,source,region,platform,gpu_model,usd_per_gpu_hour
 2026-10-29T12:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.38
 2026-10-29T13:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.38
 2026-10-29T14:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.38
-2026-09-29T14:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-29T15:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-29T16:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-29T17:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-29T18:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-29T19:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-29T20:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-29T21:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-29T22:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-29T23:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-30T00:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-30T01:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-30T02:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-30T03:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-30T04:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-30T05:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-30T06:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-30T07:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-30T08:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-30T09:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-30T10:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-30T11:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-30T12:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
-2026-09-30T13:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
+2026-10-29T15:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-29T16:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-29T17:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-29T18:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-29T19:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-29T20:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-29T21:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.23
+2026-10-29T22:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.23
+2026-10-29T23:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T00:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T01:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T02:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T03:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T04:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T05:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T06:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T07:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T08:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.38
+2026-10-30T09:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1.083333333
+2026-10-30T10:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.79
+2026-10-30T11:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.79
+2026-10-30T12:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.79
+2026-10-30T13:00:00Z,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,0.79
 2026-09-30T14:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
 2026-09-30T15:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
 2026-09-30T16:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.45
@@ -8011,31 +8267,30 @@ timestamp,source,region,platform,gpu_model,usd_per_gpu_hour
 2026-10-29T11:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,1.65
 2026-10-29T12:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,1.766666667
 2026-10-29T13:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.15
-2026-10-29T14:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.3
-2026-09-29T14:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-29T15:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-29T16:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-29T17:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-29T18:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-29T19:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-29T20:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-29T21:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-29T22:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-29T23:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-30T00:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-30T01:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-30T02:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-30T03:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-30T04:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-30T05:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-30T06:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-30T07:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-30T08:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-30T09:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-30T10:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-30T11:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-30T12:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
-2026-09-30T13:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
+2026-10-29T14:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.4
+2026-10-29T15:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,2.766666667
+2026-10-29T16:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,3.15
+2026-10-29T17:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,3.4
+2026-10-29T18:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,3.5
+2026-10-29T19:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,3.65
+2026-10-29T20:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,4.1
+2026-10-29T21:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,4.55
+2026-10-29T22:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,4.7
+2026-10-29T23:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,4.7
+2026-10-30T00:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,4.85
+2026-10-30T01:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,5.0
+2026-10-30T02:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,5.15
+2026-10-30T03:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,5.345
+2026-10-30T04:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,5.39
+2026-10-30T05:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,5.39
+2026-10-30T06:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,5.39
+2026-10-30T07:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,5.24
+2026-10-30T08:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,4.94
+2026-10-30T09:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,4.94
+2026-10-30T10:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,5.09
+2026-10-30T11:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,4.94
+2026-10-30T12:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,4.64
+2026-10-30T13:00:00Z,nebius,us-central1,gpu-h200-sxm,H200,4.34
 2026-09-30T14:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
 2026-09-30T15:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
 2026-09-30T16:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.95
@@ -8733,30 +8988,29 @@ timestamp,source,region,platform,gpu_model,usd_per_gpu_hour
 2026-10-29T12:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,4.85
 2026-10-29T13:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,4.7
 2026-10-29T14:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,4.25
-2026-09-29T14:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-29T15:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-29T16:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-29T17:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-29T18:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-29T19:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-29T20:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-29T21:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-29T22:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-29T23:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-30T00:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-30T01:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-30T02:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-30T03:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-30T04:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-30T05:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-30T06:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-30T07:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-30T08:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-30T09:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-30T10:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-30T11:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-30T12:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
-2026-09-30T13:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
+2026-10-29T15:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,4.4
+2026-10-29T16:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,4.85
+2026-10-29T17:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,5.0
+2026-10-29T18:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,4.85
+2026-10-29T19:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,4.7
+2026-10-29T20:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,4.7
+2026-10-29T21:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,4.85
+2026-10-29T22:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,5.0
+2026-10-29T23:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,4.85
+2026-10-30T00:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,4.25
+2026-10-30T01:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.8
+2026-10-30T02:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.8
+2026-10-30T03:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.8
+2026-10-30T04:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.65
+2026-10-30T05:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.65
+2026-10-30T06:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.9
+2026-10-30T07:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,4.15
+2026-10-30T08:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,4.45
+2026-10-30T09:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,4.75
+2026-10-30T10:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,4.9
+2026-10-30T11:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,4.45
+2026-10-30T12:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.85
+2026-10-30T13:00:00Z,nebius,us-central1,gpu-b200-sxm,B200,3.55
 2026-09-30T14:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
 2026-09-30T15:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
 2026-09-30T16:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.95
@@ -9453,31 +9707,30 @@ timestamp,source,region,platform,gpu_model,usd_per_gpu_hour
 2026-10-29T11:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.79
 2026-10-29T12:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.79
 2026-10-29T13:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.94
-2026-10-29T14:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,1.24
-2026-09-29T14:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-29T15:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-29T16:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-29T17:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-29T18:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-29T19:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-29T20:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-29T21:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-29T22:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-29T23:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-30T00:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-30T01:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-30T02:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-30T03:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-30T04:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-30T05:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-30T06:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-30T07:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-30T08:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-30T09:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-30T10:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-30T11:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-30T12:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
-2026-09-30T13:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
+2026-10-29T14:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,1.19
+2026-10-29T15:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.99
+2026-10-29T16:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.94
+2026-10-29T17:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.89
+2026-10-29T18:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.94
+2026-10-29T19:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,1.09
+2026-10-29T20:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,1.09
+2026-10-29T21:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.99
+2026-10-29T22:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.94
+2026-10-29T23:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.94
+2026-10-30T00:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,1.24
+2026-10-30T01:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,1.593333333
+2026-10-30T02:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,1.725
+2026-10-30T03:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,1.75
+2026-10-30T04:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,1.45
+2026-10-30T05:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.93
+2026-10-30T06:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.845
+2026-10-30T07:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.845
+2026-10-30T08:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.79
+2026-10-30T09:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.79
+2026-10-30T10:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.79
+2026-10-30T11:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.79
+2026-10-30T12:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.89
+2026-10-30T13:00:00Z,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,0.79
 2026-09-30T14:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
 2026-09-30T15:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
 2026-09-30T16:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,4.3
@@ -10175,3 +10428,26 @@ timestamp,source,region,platform,gpu_model,usd_per_gpu_hour
 2026-10-29T12:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
 2026-10-29T13:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
 2026-10-29T14:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-29T15:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-29T16:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-29T17:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-29T18:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-29T19:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-29T20:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-29T21:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-29T22:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-29T23:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-30T00:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-30T01:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-30T02:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-30T03:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-30T04:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-30T05:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-30T06:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-30T07:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-30T08:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-30T09:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-30T10:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.0
+2026-10-30T11:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.12
+2026-10-30T12:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.446666667
+2026-10-30T13:00:00Z,nebius,us-north1,gpu-b300-sxm,B300,2.6
