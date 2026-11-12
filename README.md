@@ -11,6 +11,7 @@ Plan: https://claude.ai/artifact/TEGfvuSfz1y1vB25FYuVD4
 | --- | --- | --- | --- |
 | `collectors/azure.py` | [Azure Retail Prices API](https://learn.microsoft.com/en-us/rest/api/cost-management/retail-prices/azure-retail-prices) | none | `data/tidy/cloud_prices.csv` |
 | `collectors/nebius.py` | [Nebius spot price API](https://docs.nebius.com/signup-billing/spot-prices) | none | `data/tidy/cloud_prices.csv`, `data/tidy/nebius_spot_hourly.csv` (hourly, rolling 30-day backfill), `data/tidy/nebius_spot_15min.csv` (15-minute, last 7 days, appended so it grows) |
+| `collectors/runcrate.py` | [Runcrate pricing feed](https://www.runcrate.ai/api/gpu-pricing) | none | `data/tidy/cloud_prices.csv` (on-demand, GPU types whose model is unambiguous) |
 
 Coming next: AWS on-demand and spot, Google Cloud, Vast.ai, OpenRouter, SEC EDGAR, TSMC.
 Keys for the keyed sources: see [docs/API_KEYS.md](docs/API_KEYS.md).
@@ -23,7 +24,7 @@ fix can be replayed over history, and writes normalised rows to `data/tidy/`.
 | Column | Meaning |
 | --- | --- |
 | `date` | Snapshot date (UTC) |
-| `source` | `azure`, `nebius`, later `aws`, `gcp` |
+| `source` | `azure`, `nebius`, `runcrate`, later `aws`, `gcp` |
 | `region` | Cloud region |
 | `sku` | Instance or VM size |
 | `gpu_model` | H100, H200, A100, MI300X, B200, GB200, GB300 |

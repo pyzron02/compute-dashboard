@@ -1,0 +1,111 @@
+{
+  "gpus": [
+    {
+      "gpu_type": "B300",
+      "name": "B300",
+      "vram": "288GB",
+      "min_price_hr": 17.02,
+      "available_options": 4,
+      "deployment_types": [
+        "container"
+      ]
+    },
+    {
+      "gpu_type": "B200",
+      "name": "B200",
+      "vram": "180GB",
+      "min_price_hr": 8.73,
+      "available_options": 2,
+      "deployment_types": [
+        "container"
+      ]
+    },
+    {
+      "gpu_type": "MI350X",
+      "name": "MI350X",
+      "vram": "288GB",
+      "min_price_hr": 5.72,
+      "available_options": 0,
+      "deployment_types": [
+        "vm"
+      ]
+    },
+    {
+      "gpu_type": "H200",
+      "name": "H200",
+      "vram": "141GB",
+      "min_price_hr": 5.13,
+      "available_options": 14,
+      "deployment_types": [
+        "vm",
+        "container"
+      ]
+    },
+    {
+      "gpu_type": "H200_nvl",
+      "name": "H200 NVL",
+      "vram": "141GB",
+      "min_price_hr": 4.67,
+      "available_options": 4,
+      "deployment_types": [
+        "vm"
+      ]
+    },
+    {
+      "gpu_type": "H100",
+      "name": "H100",
+      "vram": "80GB",
+      "min_price_hr": 3.58,
+      "available_options": 15,
+      "deployment_types": [
+        "vm",
+        "container"
+      ]
+    },
+    {
+      "gpu_type": "A100_80G",
+      "name": "A100 80GB",
+      "vram": "80GB",
+      "min_price_hr": 1.73,
+      "available_options": 15,
+      "deployment_types": [
+        "vm"
+      ]
+    },
+    {
+      "gpu_type": "L40S",
+      "name": "L40S",
+      "vram": "48GB",
+      "min_price_hr": 0.55,
+      "available_options": 8,
+      "deployment_types": [
+        "vm",
+        "container"
+      ]
+    },
+    {
+      "gpu_type": "RTX4090",
+      "name": "RTX 4090",
+      "vram": "24GB",
+      "min_price_hr": 0.58,
+      "available_options": 10,
+      "deployment_types": [
+        "vm",
+        "container",
+        "baremetal"
+      ]
+    },
+    {
+      "gpu_type": "RTXPro6000",
+      "name": "RTX PRO 6000",
+      "vram": "96GB",
+      "min_price_hr": 2.41,
+      "available_options": 24,
+      "deployment_types": [
+        "vm",
+        "container"
+      ]
+    }
+  ],
+  "fetched_at": "2026-11-08T07:11:05.141Z"
+}

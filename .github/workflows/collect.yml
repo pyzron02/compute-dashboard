@@ -44,6 +44,11 @@ jobs:
         if: github.event_name != 'push'
         continue-on-error: true
         run: python -m collectors.nebius
+      - name: Runcrate on-demand prices
+        id: runcrate
+        if: github.event_name != 'push'
+        continue-on-error: true
+        run: python -m collectors.runcrate
       - name: Build report and dashboard data
         if: github.event_name != 'push'
         run: |
@@ -59,7 +64,7 @@ jobs:
           git push
       # Collectors may fail without blocking each other, but the run still goes red.
       - name: Fail if any collector failed
-        if: steps.azure.outcome == 'failure' || steps.nebius.outcome == 'failure'
+        if: steps.azure.outcome == 'failure' || steps.nebius.outcome == 'failure' || steps.runcrate.outcome == 'failure'
         run: exit 1
 
   # Publishes site/ to GitHub Pages. Needs Settings > Pages > Source set to "GitHub Actions".
