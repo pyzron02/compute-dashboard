@@ -69,6 +69,10 @@
   th { color: var(--quiet); font-weight: 600; white-space: nowrap; }
   td.num, th.num { text-align: right; }
   td.best { font-weight: 700; color: var(--accent); }
+  .badge.fired { color: var(--tight); background: color-mix(in srgb, var(--tight) 14%, transparent); }
+  .badge.watch { color: var(--balanced); background: color-mix(in srgb, var(--balanced) 14%, transparent); }
+  .badge.ok { color: var(--loose); background: color-mix(in srgb, var(--loose) 14%, transparent); }
+  .badge.pending { color: var(--quiet); background: color-mix(in srgb, var(--quiet) 14%, transparent); }
   .ok { color: var(--loose); font-weight: 600; } .stale { color: var(--tight); font-weight: 600; }
   footer { margin-top: 48px; color: var(--quiet); font-size: 12px; }
   @media (max-width: 560px) { .chart { height: 280px; } h1 { font-size: 22px; } }
@@ -82,6 +86,11 @@
 
   <div class="tiles" id="tiles"></div>
   <p class="note">Nebius spot price now (median across its regions) and its change over 7 days. The badge compares spot with on-demand: tight means spot is at least 60% of on-demand, loose means under 35%.</p>
+
+  <h2 id="thesis">Thesis watch: Nebius and the neocloud trade</h2>
+  <div class="sub">Signals that would change the view. Fired means the thesis needs a rethink; watch means it is moving the wrong way.</div>
+  <div class="panel scroll"><table id="thesis-table"></table></div>
+  <p class="note">The B300 row updates daily from the price data. The others are checked by hand after each Nvidia or Nebius report and logged in <a href="https://github.com/pyzron02/compute-dashboard/blob/main/data/manual/thesis_triggers.csv">thesis_triggers.csv</a>. A GitHub issue opens when any trigger fires.</p>
 
   <h2>Scarcity: spot price as a share of on-demand</h2>
   <div class="sub">The closer to 100%, the less idle capacity a provider has for that GPU.</div>
@@ -349,6 +358,13 @@
     drawPrices(b.dataset.unit);
   });
   drawPrices('usd');
+
+  // Thesis watch
+  document.getElementById('thesis-table').innerHTML =
+    '<tr><th>Signal</th><th>Status</th><th>Breaks the thesis if</th><th>Latest evidence</th><th>Next check</th></tr>' +
+    (data.thesis || []).map(r => `<tr><td>${esc(r.trigger)}</td><td><span class="badge ${esc(r.status)}">${esc(r.status)}</span></td>
+      <td>${esc(r.breaks_if)}</td><td><a href="${esc(r.source_url)}">${esc(r.evidence)}</a>${r.last_checked ? ` <span class="note" style="white-space:nowrap">(${esc(r.last_checked)})</span>` : ''}</td>
+      <td style="white-space:nowrap">${esc(r.next_check)}</td></tr>`).join('');
 
   // Data health
   document.getElementById('health').innerHTML =
