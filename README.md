@@ -64,3 +64,12 @@ python -m collectors.azure     # writes today's snapshot under data/
 
 GitHub Actions runs every collector daily at 06:15 UTC and commits the new data
 (`.github/workflows/collect.yml`). Trigger a run by hand from the Actions tab.
+
+## Thesis watch
+
+`analysis/thesis.py` tracks the signals that would change the view on Nebius and the neocloud trade.
+The B300 trigger (Nebius spot below 50% of on-demand for 7 days running) is computed daily. The
+others are checked by hand and logged in `data/manual/thesis_triggers.csv`, one row per trigger with
+`status` (`ok`, `watch`, `fired`, `pending`), the date checked, the evidence and a source link. The
+dashboard shows them at the top, the weekly digest opens with them, and the daily run opens a
+`thesis-alert` issue when any trigger is `fired` and no alert issue is already open.

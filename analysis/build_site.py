@@ -12,6 +12,7 @@ from collections import defaultdict
 from pathlib import Path
 
 from analysis.report import GPU_ORDER, SOURCES, gpu_key, read_csv
+from analysis.thesis import thesis_watch
 
 # Extra sources the page cites beyond the price series in analysis.report.SOURCES.
 EXTRA_SOURCES = [
@@ -22,6 +23,14 @@ EXTRA_SOURCES = [
         "collector": "data/manual/gpu_specs.csv",
         "cadence": "Manual, copied Oct 24, 2026",
         "file": "data/manual/gpu_specs.csv",
+    },
+    {
+        "name": "Thesis watch: hand-checked triggers (Nvidia support, Nebius prepayments and delivery)",
+        "origin": "Trigger log with a source link per check",
+        "url": "https://github.com/pyzron02/compute-dashboard/blob/main/data/manual/thesis_triggers.csv",
+        "collector": "data/manual/thesis_triggers.csv",
+        "cadence": "Manual, after each Nvidia or Nebius report",
+        "file": "data/manual/thesis_triggers.csv",
     },
     {
         "name": "Chart annotations",
@@ -270,6 +279,7 @@ def build(data_dir):
              for r in read_csv(data_dir / "manual" / "gpu_specs.csv")}
     events = read_csv(data_dir / "manual" / "events.csv")
     quarter = read_csv(data_dir / "tidy" / "nebius_spot_15min.csv")
+    triggers = read_csv(data_dir / "manual" / "thesis_triggers.csv")
     start = market_start(hourly)
     scarcity = scarcity_series(cloud, hourly, manual, start)
     cap_days = at_cap(quarter, hourly, manual, start)
@@ -283,6 +293,7 @@ def build(data_dir):
         "market_start": start,
         "gpu_order": GPU_ORDER,
         "tiles": tile_rows,
+        "thesis": thesis_watch(scarcity, triggers),
         "intraday": intraday(quarter, hourly, start),
         "at_cap": cap_days,
         "scarcity": scarcity,
