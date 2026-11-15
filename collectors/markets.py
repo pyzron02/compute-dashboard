@@ -12,7 +12,7 @@ Sources and outputs:
   FRED fredgraph CSV (no key)            -> data/tidy/credit_spread.csv
       ICE BofA US High Yield option-adjusted spread (BAMLH0A0HYM2)
   FINRA Reg SHO daily short volume (no key) -> data/tidy/short_volume.csv
-  GDELT DOC 2.0 timeline (no key)        -> data/tidy/news_attention.csv
+  GDELT DOC 2.0 timeline (no key; covers a rolling 3 months, so history is kept by appending) -> data/tidy/news_attention.csv
   Yahoo Finance chart endpoint (no key)  -> data/tidy/stock_prices.csv (shown only as an index)
 
 Set SEC_USER_AGENT (e.g. a repository secret) to "<name> <contact email>" if SEC refuses the default.
@@ -304,8 +304,11 @@ def collect_gdelt(data_dir, dry_run=False):
     for i, q in enumerate(NEWS_QUERIES):
         if i:
             time.sleep(8)   # GDELT allows about one request every 5 seconds
-        params = {"query": q, "mode": "timelinevol", "format": "json", "timespan": "6m", "timelinesmooth": "0"}
+        params = {"query": q, "mode": "timelinevol", "format": "json", "timespan": "3m", "timelinesmooth": "0"}
         text = fetch("https://api.gdeltproject.org/api/v2/doc/doc?" + urllib.parse.urlencode(params))
+        if not text.strip():
+            print(f"gdelt: empty response for {q}", file=sys.stderr)
+            continue
         rows += parse_gdelt(json.loads(text), q)
     print(f"gdelt: {len(rows)} rows")
     if not rows:
