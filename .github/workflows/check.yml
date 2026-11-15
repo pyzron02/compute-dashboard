@@ -1,0 +1,33 @@
+name: Check pull request
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test
+        run: python -m unittest -v
+      - name: Build dashboard data from committed data
+        run: python -m analysis.build_site --out /tmp/data.json
+
+  # Fetches and parses every market source without writing, so a broken source shows up
+  # before merge. Kept separate so a source outage doesn't block the tests above.
+  sources:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch market sources (dry run)
+        run: python -m collectors.markets --dry-run

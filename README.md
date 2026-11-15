@@ -73,3 +73,25 @@ others are checked by hand and logged in `data/manual/thesis_triggers.csv`, one 
 `status` (`ok`, `watch`, `fired`, `pending`), the date checked, the evidence and a source link. The
 dashboard shows them at the top, the weekly digest opens with them, and the daily run opens a
 `thesis-alert` issue when any trigger is `fired` and no alert issue is already open.
+
+## Facts, speculation and perception views
+
+`collectors/markets.py` collects the market context; `analysis/markets.py` turns it into the
+dashboard's Facts, Speculation and Perception sections. Free sources only:
+
+| Chart | Source | How |
+| --- | --- | --- |
+| Hyperscaler capex; CoreWeave, Applied Digital and IREN funding stack | SEC EDGAR XBRL company facts | Automatic, daily |
+| Nebius funding stack | Nebius results (6-K, no quarterly XBRL) | `data/manual/funding_manual.csv` |
+| TSMC monthly revenue | TSMC monthly revenue 6-Ks on EDGAR, 2026 history from TSMC IR | Automatic + `data/manual/tsmc_revenue_seed.csv` |
+| High-yield credit spread | FRED, ICE BofA US HY OAS | Automatic, daily |
+| Short share of volume | FINRA Reg SHO daily files | Automatic, daily |
+| News attention | GDELT DOC 2.0 API | Automatic, daily |
+| Share prices (shown only as an index) | Stooq daily CSV | Automatic, daily |
+| $/MW deals, capacity, site events, guidance scorecard and revisions, rumours, analyst targets, implied moves, narrative scores | Hand-entered with a source link per row | `data/manual/*.csv` |
+
+Not built, because no free source allows it: GPU forward prices (exchange data is licensed),
+Google Trends (no public API; terms bar scraping) and Stocktwits sentiment (terms bar republishing).
+
+`python -m collectors.markets --dry-run` fetches and parses every source without writing; the
+pull-request workflow runs it so a broken source shows up before merge.

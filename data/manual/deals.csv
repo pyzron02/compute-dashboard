@@ -1,0 +1,8 @@
+date,neocloud,counterparty,usd_m_per_mw_year,basis,note,url
+2026-05-01,SpaceX (xAI),Anthropic,50,calculated,"All of Colossus 1: 300 MW at $1.25B a month (our calculation)",https://www.datacenterdynamics.com/en/news/musk-spacex-xai-is-actively-seeking-more-ai-compute-customers-following-anthropic-deal/
+2026-06-08,Applied Digital,Investment-grade hyperscaler,1.7,calculated,"Delta Forge 2: 210 MW, 15 years, about $5.2B. Landlord rent, not GPU cloud",https://www.sec.gov/Archives/edgar/data/1144879/000114487926000057/apldq127earningsrelease.htm
+2026-08-12,Nebius,"Reflection, Cohere, a neolab, a quant firm",22.5,reported range,"Four Q2 deals at $20-25M per MW (midpoint shown)",https://assets.nebius.com/assets/4462517b-ce83-41f2-96ed-f2ac1bc06a05/SHLQ226%20(1).pdf-0
+2026-08-27,IREN,"Frontier lab, Cohere, Perplexity, Figure",20,reported floor,"Multi-year contracts at more than $20M per MW",https://www.nasdaq.com/press-release/iren-reports-fy26-results-2026-08-27
+2026-08-31,Lambda,Anthropic,16.7,calculated,"$35B over six years for about 350 MW (secondary source citing WSJ)",https://wealthengine.blog/2026/09/03/lambda-anthropic-35-billion-deal/
+2026-09-16,CoreWeave,Not named,40,reported,"Three- to six-month contracts at about $40M per MW",https://www.businesswire.com/news/home/20260916366150/en/CoreWeave-Continues-to-Contract-New-Compute-Capacity-at-Higher-Prices
+2026-11-12,Nebius,"AI natives; Databricks, Datadog, Palantir, Snowflake",25,reported floor,"Q3 agreements closed above $25M per MW",https://startupfortune.com/nebius-shares-fall-as-much-as-16-after-q3-beat-and-a-later-arr-target/

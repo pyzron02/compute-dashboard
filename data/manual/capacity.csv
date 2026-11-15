@@ -1,0 +1,5 @@
+date,company,contracted_gw,live_gw,note,url
+2026-08-11,CoreWeave,4.2,1.5,Q2 results,https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx
+2026-11-12,Nebius,4.0,,"More than 4 GW contracted, 5 GW targeted by year-end; live capacity not disclosed",https://startupfortune.com/nebius-shares-fall-as-much-as-16-after-q3-beat-and-a-later-arr-target/
+2026-10-07,Applied Digital,1.41,,"Leased (powered shell), not GPU capacity",https://www.sec.gov/Archives/edgar/data/1144879/000114487926000057/apldq127earningsrelease.htm
+2026-10-20,SpaceX (xAI),,1.7,"About 1.7 GW of compute, shared with xAI's own training",https://techcrunch.com/2026/10/20/spacexs-ai-business-is-beating-expectations/

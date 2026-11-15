@@ -1,0 +1,12 @@
+company,item,unit,period,guided_on,low,high,actual,outcome,note,url
+Nebius,ARR at year-end 2025,$B,2025,,0.9,1.1,1.25,hit,"Finished 2025 above its own range",https://www.fool.com/investing/2026/11/05/nebius-stock-the-bull-case-the-bear-case-and-my-call-before-nov-12/
+Nebius,ARR at year-end 2026,$B,2026,2026-08-12,7,9,,missed,"$7B moved to February 2027 and ARR guidance dropped on Nov 12",https://startupfortune.com/nebius-shares-fall-as-much-as-16-after-q3-beat-and-a-later-arr-target/
+Nebius,2026 revenue,$B,2026,2026-08-12,3.0,3.4,,,"Q2 guidance",https://www.investing.com/news/stock-market-news/nebius-earnings-preview-what-to-watch-when-q3-results-hit-thursday-93CH-5019658
+Nebius,2026 revenue,$B,2026,2026-11-12,3.0,3.2,,cut,"Narrowed to the low end on colocation delays",https://404kresearch.substack.com/p/nebius-q3-2026-earnings-call
+Nebius,2026 capex,$B,2026,2026-08-12,20,25,,,"Q2 guidance",https://www.fool.com/investing/2026/11/05/nebius-stock-the-bull-case-the-bear-case-and-my-call-before-nov-12/
+Nebius,2026 capex,$B,2026,2026-11-12,27,27,,raised,"About $27B",https://startupfortune.com/nebius-shares-fall-as-much-as-16-after-q3-beat-and-a-later-arr-target/
+Nebius,Q3 2026 revenue (consensus),$B,2026Q3,2026-11-11,0.907,0.907,0.981,beat,"Consensus, not company guidance",https://stocktwits.com/news-articles/markets/equity/nbis-stock-jumps-over-11-on-core-weave-boost-analysts-expect-over-six-fold-sales-in-upcoming-q3-report/cNGD19GR9Bc
+CoreWeave,2026 revenue,$B,2026,2026-08-11,12.4,13.2,,,"Q2 guidance",https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx
+CoreWeave,2026 revenue,$B,2026,2026-11-10,13.0,13.3,,raised,"Q3 guidance",https://vestedfinance.com/blog/us-stocks/coreweave-q3-earnings-2026/
+CoreWeave,Q3 2026 interest expense,$B,2026Q3,2026-08-11,0.86,0.94,0.846,hit,"Came in below the guided range (lower cost is better)",https://vestedfinance.com/blog/us-stocks/coreweave-q3-earnings-2026/
+CoreWeave,Q3 2026 revenue (consensus),$B,2026Q3,2026-11-10,3.55,3.55,3.66,beat,"Consensus, not company guidance",https://vestedfinance.com/blog/us-stocks/coreweave-q3-earnings-2026/

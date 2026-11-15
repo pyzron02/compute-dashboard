@@ -12,6 +12,7 @@ from collections import defaultdict
 from pathlib import Path
 
 from analysis.report import GPU_ORDER, SOURCES, gpu_key, read_csv
+from analysis.markets import MARKET_SOURCES, build_markets
 from analysis.thesis import thesis_watch
 
 # Extra sources the page cites beyond the price series in analysis.report.SOURCES.
@@ -294,6 +295,7 @@ def build(data_dir):
         "gpu_order": GPU_ORDER,
         "tiles": tile_rows,
         "thesis": thesis_watch(scarcity, triggers),
+        "markets": build_markets(data_dir, scarcity),
         "intraday": intraday(quarter, hourly, start),
         "at_cap": cap_days,
         "scarcity": scarcity,
@@ -301,7 +303,7 @@ def build(data_dir):
         "prices": price_matrix(cloud, manual, specs),
         "events": events,
         "health": health(cloud, hourly),
-        "sources": list(SOURCES.values()) + EXTRA_SOURCES,
+        "sources": list(SOURCES.values()) + EXTRA_SOURCES + MARKET_SOURCES,
     }
 
 
