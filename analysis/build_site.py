@@ -14,6 +14,7 @@ from pathlib import Path
 from analysis.report import GPU_ORDER, SOURCES, gpu_key, read_csv
 from analysis.markets import MARKET_SOURCES, build_markets
 from analysis.thesis import thesis_watch
+from analysis.interpret import readings
 
 # Extra sources the page cites beyond the price series in analysis.report.SOURCES.
 EXTRA_SOURCES = [
@@ -289,7 +290,7 @@ def build(data_dir):
         last7 = [c for c in cap_days if c["gpu"] == t["gpu"]][-7:]
         total = sum(c["intervals"] for c in last7)
         t["at_cap_7d"] = round(sum(c["share"] * c["intervals"] for c in last7) / total, 4) if total else None
-    return {
+    site = {
         "generated": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "market_start": start,
         "gpu_order": GPU_ORDER,
@@ -305,6 +306,8 @@ def build(data_dir):
         "health": health(cloud, hourly),
         "sources": list(SOURCES.values()) + EXTRA_SOURCES + MARKET_SOURCES,
     }
+    site["readings"] = readings(site)
+    return site
 
 
 def main(argv=None):
