@@ -227,6 +227,10 @@
       <p class="note" id="narratives-note"></p>
     </div>
   </div>
+
+  <h3>What would confirm or break each narrative</h3>
+  <div class="sub">Status is hand-judged against the facts above and updated with each check.</div>
+  <div class="panel scroll"><table id="narrative-tests"></table></div>
   <p class="note" id="notbuilt-note"></p>
 
   <h2>Data health</h2>
@@ -708,6 +712,10 @@
     });
     document.getElementById('narratives-note').innerHTML = nar.map((n, i) => `${i + 1}. ${esc(n.narrative)}`).join(' · ');
   }
+  const narClass = () => 'pending';
+  document.getElementById('narrative-tests').innerHTML = '<tr><th>#</th><th>Narrative</th><th>Status</th><th>Confirmed if</th><th>Breaks if</th></tr>' +
+    nar.map((n, i) => `<tr><td>${i + 1}</td><td>${esc(n.narrative)}</td><td><span class="badge ${narClass(n.status || '')}" style="white-space:nowrap">${esc(n.status || '')}</span></td>
+      <td>${esc(n.confirmed_if || '')}</td><td>${esc(n.breaks_if || '')}</td></tr>`).join('');
   document.getElementById('notbuilt-note').innerHTML = 'Not charted, and why: ' +
     (mk.not_built || []).map(n => `<b>${esc(n.chart)}</b>: ${esc(n.why)}`).join(' ');
 
