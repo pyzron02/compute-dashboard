@@ -13,6 +13,7 @@ from pathlib import Path
 
 from analysis.build_site import build, parse_ts
 from analysis.report import gpu_key, read_csv
+from analysis.thesis import markdown as thesis_table
 
 DASHBOARD = "https://pyzron02.github.io/compute-dashboard/"
 REPO = "https://github.com/pyzron02/compute-dashboard"
@@ -81,6 +82,14 @@ def render(data, cloud, hourly, events, today):
     tomorrow = (today + dt.timedelta(days=1)).isoformat()
     lines = [f"# Compute prices, week to {today:%b} {today.day}, {today.year}", "",
              f"Live dashboard: {DASHBOARD}", ""]
+
+    # 0. Thesis watch first, so a fired trigger is the first thing read.
+    thesis = data.get("thesis", [])
+    if thesis:
+        fired = [r for r in thesis if r["status"] == "fired"]
+        lines += ["## Thesis watch", ""]
+        lines += ([f"> **Alert:** {r['trigger']} has fired. {r['evidence']}" for r in fired] + [""] if fired else [])
+        lines += thesis_table(thesis) + [""]
 
     # 1. Headlines per GPU (Nebius spot), sorted by size of move.
     scar = data["scarcity"]

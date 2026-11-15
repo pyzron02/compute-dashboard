@@ -44,6 +44,13 @@ jobs:
         if: github.event_name != 'push'
         continue-on-error: true
         run: python -m collectors.nebius
+      - name: Market and funding series (SEC, TSMC, FRED, FINRA, GDELT, Stooq)
+        id: markets
+        if: github.event_name != 'push'
+        continue-on-error: true
+        env:
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+        run: python -m collectors.markets
       - name: Build report and dashboard data
         if: github.event_name != 'push'
         run: |
@@ -57,9 +64,24 @@ jobs:
           git add data reports site/data.json
           git diff --cached --quiet || git commit -m "data: prices for $(date -u +%F)"
           git push
+      # Opens one issue when a thesis trigger fires; no new one while it stays open.
+      - name: Thesis alert
+        if: github.event_name != 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          path=$(python -m analysis.thesis --alert-out "$RUNNER_TEMP/thesis_alert.md")
+          if [ -n "$path" ]; then
+            gh label create thesis-alert --color b4432f --description "A thesis trigger fired" 2>/dev/null || true
+            open=$(gh issue list --label thesis-alert --state open --json number --jq length)
+            if [ "$open" = "0" ]; then
+              gh issue create --title "Thesis trigger fired: $(date -u '+%b %-d, %Y')" \
+                --label thesis-alert --body-file "$path"
+            fi
+          fi
       # Collectors may fail without blocking each other, but the run still goes red.
       - name: Fail if any collector failed
-        if: steps.azure.outcome == 'failure' || steps.nebius.outcome == 'failure'
+        if: steps.azure.outcome == 'failure' || steps.nebius.outcome == 'failure' || steps.markets.outcome == 'failure'
         run: exit 1
 
   # Publishes site/ to GitHub Pages. Needs Settings > Pages > Source set to "GitHub Actions".

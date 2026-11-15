@@ -39,6 +39,9 @@
   main { max-width: 1040px; margin: 0 auto; padding: 24px 16px 64px; }
   h1 { font-size: 26px; margin: 0 0 4px; letter-spacing: -.01em; }
   h2 { font-size: 18px; margin: 40px 0 4px; }
+  h2#facts, h2#speculation, h2#perception { font-size: 21px; margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--line); }
+  h3 { font-size: 15px; margin: 24px 0 2px; }
+  .empty { color: var(--quiet); font-size: 13px; padding: 24px 8px; text-align: center; }
   .sub, .note { color: var(--quiet); font-size: 13px; }
   .note { margin: 6px 0 0; }
   a { color: var(--accent); }
@@ -69,6 +72,10 @@
   th { color: var(--quiet); font-weight: 600; white-space: nowrap; }
   td.num, th.num { text-align: right; }
   td.best { font-weight: 700; color: var(--accent); }
+  .badge.fired { color: var(--tight); background: color-mix(in srgb, var(--tight) 14%, transparent); }
+  .badge.watch { color: var(--balanced); background: color-mix(in srgb, var(--balanced) 14%, transparent); }
+  .badge.ok { color: var(--loose); background: color-mix(in srgb, var(--loose) 14%, transparent); }
+  .badge.pending { color: var(--quiet); background: color-mix(in srgb, var(--quiet) 14%, transparent); }
   .ok { color: var(--loose); font-weight: 600; } .stale { color: var(--tight); font-weight: 600; }
   footer { margin-top: 48px; color: var(--quiet); font-size: 12px; }
   @media (max-width: 560px) { .chart { height: 280px; } h1 { font-size: 22px; } }
@@ -78,10 +85,15 @@
 <main>
   <h1>AI compute prices</h1>
   <div class="sub" id="asof">Loading…</div>
-  <div class="sub">Free public sources, collected daily. <a href="https://github.com/pyzron02/compute-dashboard">Code and raw data</a> · <a href="#sources">Sources</a> · <a href="https://github.com/pyzron02/compute-dashboard/issues?q=label%3Adigest">Weekly digests</a></div>
+  <div class="sub">Free public sources, collected daily. <a href="https://github.com/pyzron02/compute-dashboard">Code and raw data</a> · <a href="#thesis">Thesis watch</a> · <a href="#facts">Facts</a> · <a href="#speculation">Speculation</a> · <a href="#perception">Perception</a> · <a href="#sources">Sources</a> · <a href="https://github.com/pyzron02/compute-dashboard/issues?q=label%3Adigest">Weekly digests</a></div>
 
   <div class="tiles" id="tiles"></div>
   <p class="note">Nebius spot price now (median across its regions) and its change over 7 days. The badge compares spot with on-demand: tight means spot is at least 60% of on-demand, loose means under 35%.</p>
+
+  <h2 id="thesis">Thesis watch: Nebius and the neocloud trade</h2>
+  <div class="sub">Signals that would change the view. Fired means the thesis needs a rethink; watch means it is moving the wrong way.</div>
+  <div class="panel scroll"><table id="thesis-table"></table></div>
+  <p class="note">The B300 row updates daily from the price data. The others are checked by hand after each Nvidia or Nebius report and logged in <a href="https://github.com/pyzron02/compute-dashboard/blob/main/data/manual/thesis_triggers.csv">thesis_triggers.csv</a>. A GitHub issue opens when any trigger fires.</p>
 
   <h2>Scarcity: spot price as a share of on-demand</h2>
   <div class="sub">The closer to 100%, the less idle capacity a provider has for that GPU.</div>
@@ -115,6 +127,111 @@
   </div>
   <div class="panel scroll"><table id="prices"></table></div>
   <p class="note" id="prices-note"></p>
+
+  <h2 id="facts">Facts: filings and reported numbers</h2>
+  <div class="sub">Figures a company or regulator reported. Each chart links its source in the table at the bottom.</div>
+
+  <h3>Hyperscaler capex</h3>
+  <div class="sub">Quarterly purchases of property and equipment, $B, by calendar quarter the period ends in. Line: year-on-year change of the five-company total.</div>
+  <div class="panel"><div class="chart"><canvas id="capex" aria-label="Hyperscaler capex by quarter"></canvas></div></div>
+
+  <h3>Neocloud funding stack</h3>
+  <div class="sub">Who is paying for the build: lenders (debt) or customers (deferred revenue, mostly prepayments). $B at each quarter end.</div>
+  <div class="controls" id="fund-buttons" role="group" aria-label="Company"></div>
+  <div class="pair">
+    <div class="panel"><div class="chart short"><canvas id="funding" aria-label="Debt, cash and deferred revenue"></canvas></div></div>
+    <div class="panel"><div class="chart short"><canvas id="interest" aria-label="Interest expense against operating income"></canvas></div></div>
+  </div>
+  <p class="note" id="funding-note"></p>
+
+  <h3>Price per MW on new contracts</h3>
+  <div class="sub">One dot per disclosed deal, $M of revenue per MW per year. Higher means more pricing power.</div>
+  <div class="panel"><div class="chart short"><canvas id="deals" aria-label="Deal price per MW"></canvas></div></div>
+
+  <div class="pair">
+    <div>
+      <h3>Contracted vs live capacity</h3>
+      <div class="sub">GW. The gap is what still has to be built.</div>
+      <div class="panel"><div class="chart short"><canvas id="capacity" aria-label="Contracted and live capacity"></canvas></div></div>
+    </div>
+    <div>
+      <h3>Site delays and cancellations</h3>
+      <div class="sub">Power and financing are now the delivery constraint.</div>
+      <div class="panel"><div class="chart short"><canvas id="sites" aria-label="Site events timeline"></canvas></div></div>
+    </div>
+  </div>
+  <p class="note" id="sites-note"></p>
+
+  <h3>TSMC monthly revenue</h3>
+  <div class="sub">NT$ billion, with a 3-month average. An early read on chip supply.</div>
+  <div class="panel"><div class="chart short"><canvas id="tsmc" aria-label="TSMC monthly revenue"></canvas></div></div>
+
+  <h2 id="speculation">Speculation: forecasts and unconfirmed reports</h2>
+  <div class="sub">Promises and rumours, checked against what happened.</div>
+
+  <h3>Guidance scorecard</h3>
+  <div class="panel scroll"><table id="scorecard"></table></div>
+
+  <div class="pair">
+    <div>
+      <h3>Guidance revisions</h3>
+      <div class="sub">Each bar is a guided range, as % of the first guide&#39;s midpoint so items of different size share an axis. Hover for $.</div>
+      <div class="panel"><div class="chart short"><canvas id="revisions" aria-label="Guidance revisions"></canvas></div></div>
+    </div>
+    <div>
+      <h3>Analyst price targets</h3>
+      <div class="sub">Published targets ($) against the latest close (bar).</div>
+      <div class="panel"><div class="chart short"><canvas id="targets" aria-label="Analyst price targets"></canvas></div></div>
+    </div>
+  </div>
+
+  <h3>Unconfirmed reports</h3>
+  <div class="panel scroll"><table id="rumours"></table></div>
+
+  <h3>Implied vs actual move on earnings</h3>
+  <div class="sub">Options-implied move (±) against the reported move, %.</div>
+  <div class="panel"><div class="chart short"><canvas id="implied" aria-label="Implied and actual earnings moves"></canvas></div></div>
+
+  <h2 id="perception">Perception: mood and narrative</h2>
+  <div class="sub">What the market feels, set beside the facts it should follow.</div>
+
+  <h3>Share prices against fundamentals</h3>
+  <div class="sub">Top: share prices indexed to 100. Bottom: B300 spot as a share of on-demand, and deal prices per MW. Same time axis.</div>
+  <div class="panel"><div class="chart short"><canvas id="basket" aria-label="Indexed share prices"></canvas></div>
+    <div class="chart short"><canvas id="fundamentals" aria-label="B300 scarcity and deal prices"></canvas></div></div>
+  <p class="note" id="basket-note"></p>
+
+  <div class="pair">
+    <div>
+      <h3>News attention</h3>
+      <div class="sub">Share of global online news mentioning each term (GDELT).</div>
+      <div class="panel"><div class="chart short"><canvas id="attention" aria-label="News attention"></canvas></div></div>
+    </div>
+    <div>
+      <h3>Short share of daily volume</h3>
+      <div class="sub">FINRA short sale volume over total volume, 5-trading-day window.</div>
+      <div class="panel"><div class="chart short"><canvas id="shorts" aria-label="Short share of volume"></canvas></div></div>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div>
+      <h3>High-yield credit spread</h3>
+      <div class="sub">ICE BofA US High Yield OAS, %. Lenders' view of risk.</div>
+      <div class="panel"><div class="chart short"><canvas id="spread" aria-label="High-yield credit spread"></canvas></div></div>
+    </div>
+    <div>
+      <h3>Narratives: evidence vs price impact</h3>
+      <div class="sub">Hand-scored 1–5. Top left: moving prices on thin evidence.</div>
+      <div class="panel"><div class="chart short"><canvas id="narratives" aria-label="Narrative evidence and price impact"></canvas></div></div>
+      <p class="note" id="narratives-note"></p>
+    </div>
+  </div>
+
+  <h3>What would confirm or break each narrative</h3>
+  <div class="sub">Status is hand-judged against the facts above and updated with each check.</div>
+  <div class="panel scroll"><table id="narrative-tests"></table></div>
+  <p class="note" id="notbuilt-note"></p>
 
   <h2>Data health</h2>
   <div class="panel scroll"><table id="health"></table></div>
@@ -349,6 +466,260 @@
     drawPrices(b.dataset.unit);
   });
   drawPrices('usd');
+
+  // Thesis watch
+  document.getElementById('thesis-table').innerHTML =
+    '<tr><th>Signal</th><th>Status</th><th>Breaks the thesis if</th><th>Latest evidence</th><th>Next check</th></tr>' +
+    (data.thesis || []).map(r => `<tr><td>${esc(r.trigger)}</td><td><span class="badge ${esc(r.status)}">${esc(r.status)}</span></td>
+      <td>${esc(r.breaks_if)}</td><td><a href="${esc(r.source_url)}">${esc(r.evidence)}</a>${r.last_checked ? ` <span class="note" style="white-space:nowrap">(${esc(r.last_checked)})</span>` : ''}</td>
+      <td style="white-space:nowrap">${esc(r.next_check)}</td></tr>`).join('');
+
+  {
+  // ---- Facts / speculation / perception -------------------------------------------------
+  const mk = data.markets || { facts: {}, speculation: {}, perception: {}, not_built: [] };
+  const cat = ['--gpu-B300', '--gpu-H200', '--gpu-H100', '--gpu-GB200', '--gpu-MI300X', '--gpu-A100', '--gpu-B200', '--gpu-RTX'].map(css);
+  const colorOf = (() => { const m = {}; return k => (m[k] ??= cat[Object.keys(m).length % cat.length]); })();
+  const legend = { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, usePointStyle: true } };
+  const ms = d => Date.parse(d.length === 10 ? d + 'T12:00:00Z' : d);
+  const empty = (id, msg) => {
+    const c = document.getElementById(id); if (!c) return;
+    c.closest('.chart').outerHTML = `<div class="empty">${esc(msg)}</div>`;
+  };
+  const pending = 'No data yet: the collector fills this on its next daily run.';
+  const statusClass = s => ({ hit: 'ok', beat: 'ok', raised: 'ok', confirmed: 'ok', missed: 'fired', cut: 'fired', denied: 'fired',
+    unconfirmed: 'watch', claimed: 'pending', delayed: 'watch', 'at risk': 'watch', cancelled: 'fired' }[s] || 'pending');
+  const lineChart = (id, series, opts = {}) => {
+    const xs = series.flatMap(s => s.points.map(p => ms(p[0])));
+    if (!xs.length) return empty(id, opts.empty || pending);
+    return new Chart(document.getElementById(id), {
+      type: 'line',
+      data: { datasets: series.map(s => ({ label: s.name, data: s.points.map(([d, v]) => ({ x: ms(d), y: opts.scale ? v * opts.scale : v })),
+        borderColor: s.color || colorOf(s.name), backgroundColor: s.color || colorOf(s.name), borderWidth: s.width || 1.5, pointRadius: 0, tension: .2 })) },
+      plugins: opts.events ? [eventLines] : [],
+      options: { maintainAspectRatio: false, interaction: { mode: 'nearest', axis: 'x', intersect: false },
+        scales: { x: timeAxis(opts.min ?? Math.min(...xs), opts.max ?? Math.max(...xs)), y: { ticks: { callback: opts.yfmt || (v => v) } } },
+        plugins: { legend, tooltip: { callbacks: { title: i => dayLabel(i[0].parsed.x), label: c => `${c.dataset.label}: ${(opts.yfmt || (v => v))(c.parsed.y)}` } } } }
+    });
+  };
+  const F = mk.facts, SP = mk.speculation, P = mk.perception;
+
+  // Capex: stacked bars by company + YoY line.
+  if (!F.capex || !F.capex.length) empty('capex', pending);
+  else {
+    const qs = F.capex.map(r => r.quarter), cos = ['MSFT', 'GOOGL', 'AMZN', 'META', 'ORCL'];
+    new Chart(document.getElementById('capex'), {
+      data: { labels: qs, datasets: [
+        ...cos.map(c => ({ type: 'bar', label: c, data: F.capex.map(r => r.by_company[c] ?? null), backgroundColor: colorOf(c), stack: 'c', yAxisID: 'y' })),
+        { type: 'line', label: 'Total, year on year', data: F.capex.map(r => r.yoy == null ? null : r.yoy * 100), borderColor: css('--ink'),
+          backgroundColor: css('--ink'), yAxisID: 'y2', pointRadius: 3, spanGaps: true }] },
+      options: { maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, ticks: { callback: v => '$' + v + 'B' } },
+          y2: { position: 'right', grid: { display: false }, ticks: { callback: v => v + '%' } } },
+        plugins: { legend, tooltip: { callbacks: { label: c => c.dataset.yAxisID === 'y2' ? `YoY: ${Math.round(c.parsed.y)}%` : `${c.dataset.label}: $${c.parsed.y}B` } } } }
+    });
+  }
+
+  // Funding stack with a company switcher.
+  const fund = F.funding || [];
+  const fundCos = [...new Set(fund.map(r => r.ticker))];
+  let fundChart, intChart;
+  const drawFunding = t => {
+    const rows = fund.filter(r => r.ticker === t), labels = rows.map(r => r.period_end);
+    const bars = [['debt', 'Debt', '--tight'], ['deferred_revenue', 'Deferred revenue (prepayments)', '--loose'], ['cash', 'Cash', '--series-2']]
+      .map(([k, l, c]) => ({ label: l, data: rows.map(r => r[k]), backgroundColor: css(c) }));
+    const lines = [['interest_expense', 'Interest expense', '--tight'], ['operating_income', 'Operating income', '--loose']]
+      .map(([k, l, c]) => ({ label: l, data: rows.map(r => r[k]), backgroundColor: css(c) }));
+    const money3 = v => v == null ? '–' : '$' + v.toFixed(2) + 'B';
+    const opts = { maintainAspectRatio: false, scales: { x: { grid: { display: false } }, y: { ticks: { callback: v => '$' + v + 'B' } } },
+      plugins: { legend, tooltip: { callbacks: { label: c => `${c.dataset.label}: ${money3(c.parsed.y)}` } } } };
+    fundChart?.destroy(); intChart?.destroy();
+    fundChart = new Chart(document.getElementById('funding'), { type: 'bar', data: { labels, datasets: bars }, options: opts });
+    intChart = new Chart(document.getElementById('interest'), { type: 'bar', data: { labels, datasets: lines }, options: opts });
+  };
+  if (!fundCos.length) { empty('funding', pending); empty('interest', pending); }
+  else {
+    const fb = document.getElementById('fund-buttons');
+    fb.innerHTML = fundCos.map((t, i) => `<button type="button" data-t="${esc(t)}" aria-pressed="${i === 0}">${esc(t)}</button>`).join('');
+    fb.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return;
+      fb.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); drawFunding(b.dataset.t); });
+    drawFunding(fundCos[0]);
+  }
+  document.getElementById('funding-note').textContent = 'CoreWeave, Applied Digital and IREN come from their SEC XBRL filings. Nebius files 6-Ks without quarterly XBRL, so its figures are entered by hand from its results. Interest and operating income are for the quarter; the other bars are balances at quarter end.';
+
+  // $/MW dot plot.
+  const deals = F.deals || [];
+  if (!deals.length) empty('deals', 'No deals logged.');
+  else {
+    const who = [...new Set(deals.map(d => d.neocloud))];
+    const xs = deals.map(d => ms(d.date));
+    new Chart(document.getElementById('deals'), {
+      type: 'scatter',
+      data: { datasets: who.map(w => ({ label: w, data: deals.filter(d => d.neocloud === w).map(d => ({ x: ms(d.date), y: d.usd_m_per_mw_year, d })),
+        backgroundColor: colorOf(w), borderColor: colorOf(w), pointRadius: 6, pointHoverRadius: 8 })) },
+      options: { maintainAspectRatio: false, scales: { x: timeAxis(Math.min(...xs) - 864e6, Math.max(...xs) + 864e6), y: { min: 0, ticks: { callback: v => '$' + v + 'M' } } },
+        onClick: (e, els) => { if (els[0]) window.open(els[0].element.$context.raw.d.url, '_blank', 'noopener'); },
+        plugins: { legend, tooltip: { callbacks: { label: c => { const d = c.raw.d; return [`${d.neocloud} – ${d.counterparty}: $${d.usd_m_per_mw_year}M per MW (${d.basis})`, d.note]; } } } } }
+    });
+  }
+
+  // Contracted vs live capacity.
+  const capRows = F.capacity || [];
+  if (!capRows.length) empty('capacity', 'No capacity logged.');
+  else new Chart(document.getElementById('capacity'), {
+    type: 'bar', data: { labels: capRows.map(r => r.company), datasets: [
+      { label: 'Contracted', data: capRows.map(r => r.contracted_gw), backgroundColor: css('--series-2') },
+      { label: 'Live', data: capRows.map(r => r.live_gw), backgroundColor: css('--series-1') }] },
+    options: { indexAxis: 'y', maintainAspectRatio: false, scales: { x: { ticks: { callback: v => v + ' GW' } }, y: { grid: { display: false } } },
+      plugins: { legend, tooltip: { callbacks: { label: c => `${c.dataset.label}: ${c.parsed.x ?? 'not disclosed'} GW`, afterLabel: c => capRows[c.dataIndex].note } } } }
+  });
+
+  // Site events timeline: x = date, y = company, colour = status.
+  const sites = F.sites || [];
+  if (!sites.length) empty('sites', 'No site events logged.');
+  else {
+    const cos = [...new Set(sites.map(s => s.company))], xs = sites.map(s => ms(s.date));
+    const stColor = s => css({ cancelled: '--tight', delayed: '--balanced', 'at risk': '--balanced' }[s] || '--quiet');
+    new Chart(document.getElementById('sites'), {
+      type: 'scatter', data: { datasets: [...new Set(sites.map(s => s.status))].map(st => ({ label: st,
+        data: sites.filter(s => s.status === st).map(s => ({ x: ms(s.date), y: cos.indexOf(s.company), s })),
+        backgroundColor: stColor(st), borderColor: stColor(st), pointRadius: 7, pointStyle: st === 'cancelled' ? 'crossRot' : 'circle', borderWidth: 3 })) },
+      options: { maintainAspectRatio: false, scales: { x: timeAxis(Math.min(...xs) - 3 * 864e5, Math.max(...xs) + 3 * 864e5),
+        y: { min: -.5, max: cos.length - .5, reverse: true, grid: { display: false }, afterBuildTicks: ax => { ax.ticks = cos.map((_, i) => ({ value: i })); }, ticks: { autoSkip: false, callback: v => cos[v] ?? '' } } },
+        plugins: { legend, tooltip: { callbacks: { label: c => `${c.raw.s.company}, ${c.raw.s.site}: ${c.raw.s.status}`, afterLabel: c => c.raw.s.detail } } } }
+    });
+    document.getElementById('sites-note').innerHTML = 'Site events: ' + sites.map(s => `<a href="${esc(s.url)}">${esc(s.company)} ${esc(s.status)}, ${dayLabel(ms(s.date))}</a>`).join(' · ');
+  }
+
+  // TSMC monthly revenue.
+  const ts = F.tsmc || [];
+  if (!ts.length) empty('tsmc', pending);
+  else new Chart(document.getElementById('tsmc'), {
+    data: { labels: ts.map(r => r.month), datasets: [
+      { type: 'bar', order: 1, label: 'Monthly revenue', data: ts.map(r => r.ntd_billion), backgroundColor: css('--series-2') },
+      { type: 'line', order: 0, label: '3-month average', data: ts.map(r => r.avg3), borderColor: css('--series-1'), backgroundColor: css('--series-1'), pointRadius: 0, spanGaps: false }] },
+    options: { maintainAspectRatio: false, scales: { x: { grid: { display: false } }, y: { ticks: { callback: v => 'NT$' + v + 'B' } } },
+      plugins: { legend, tooltip: { callbacks: { label: c => `${c.dataset.label}: NT$${c.parsed.y}B` } } } }
+  });
+
+  // Scorecard table.
+  const fmtRange = r => r.low == null ? '–' : (r.low === r.high ? r.low : `${r.low}–${r.high}`) + ' ' + r.unit;
+  document.getElementById('scorecard').innerHTML = '<tr><th>Company</th><th>Item</th><th>Guided / expected</th><th>Actual</th><th>Outcome</th><th>Note</th></tr>' +
+    (SP.scorecard || []).map(r => `<tr><td>${esc(r.company)}</td><td>${esc(r.item)}</td><td>${esc(fmtRange(r))}</td>
+      <td>${r.actual == null ? '–' : esc(r.actual + ' ' + r.unit)}</td><td><span class="badge ${statusClass(r.outcome)}">${esc(r.outcome)}</span></td>
+      <td><a href="${esc(r.url)}">${esc(r.note)}</a></td></tr>`).join('');
+
+  // Guidance revisions: each range as % of the first guided midpoint, so $3B and $27B items share an axis.
+  const revs = SP.revisions || [];
+  if (!revs.length) empty('revisions', 'No revised guidance logged yet.');
+  else {
+    const maxN = Math.max(...revs.map(r => r.points.length));
+    const shades = ['--series-3', '--series-1', '--accent'];
+    const base = r => (r.points[0].low + r.points[0].high) / 2;
+    new Chart(document.getElementById('revisions'), {
+      type: 'bar', data: { labels: revs.map(r => r.label), datasets: Array.from({ length: maxN }, (_, i) => ({
+        label: i === 0 ? 'First guide' : i === maxN - 1 ? 'Latest guide' : `Revision ${i}`,
+        data: revs.map(r => { const p = r.points[i]; if (!p) return null; const b = base(r);
+          const lo = p.low / b * 100, hi = p.high / b * 100; return [lo, hi - lo < 1 ? lo + 1 : hi]; }),
+        backgroundColor: css(shades[Math.min(i, shades.length - 1)]), borderSkipped: false, barPercentage: .8 })) },
+      options: { indexAxis: 'y', maintainAspectRatio: false, scales: { x: { ticks: { callback: v => v + '%' } }, y: { grid: { display: false } } },
+        plugins: { legend, tooltip: { callbacks: { label: c => { const p = revs[c.dataIndex].points[c.datasetIndex];
+          return `${p.guided_on}: $${p.low === p.high ? p.low : p.low + '–' + p.high}B`; } } } } }
+    });
+  }
+
+  // Analyst targets vs latest close.
+  const tg = SP.targets || [], syms = [...new Set(tg.map(t => t.symbol))];
+  if (!tg.length) empty('targets', 'No targets logged.');
+  else {
+    const px = SP.target_prices || {};
+    new Chart(document.getElementById('targets'), {
+      data: { labels: syms, datasets: [
+        { type: 'bar', label: 'Latest close', data: syms.map(s => px[s]?.close ?? null), backgroundColor: css('--series-4'), barPercentage: .5 },
+        { type: 'scatter', label: 'Targets', data: tg.map(t => ({ x: t.symbol, y: t.usd, t })), backgroundColor: css('--accent'), borderColor: css('--accent'), pointRadius: 6 }] },
+      options: { maintainAspectRatio: false, scales: { x: { type: 'category', labels: syms, grid: { display: false } }, y: { min: 0, ticks: { callback: v => '$' + v } } },
+        plugins: { legend, tooltip: { callbacks: { label: c => c.raw?.t ? `${c.raw.t.source} (${c.raw.t.date}): $${c.raw.t.usd}` : `Latest close ${px[c.label]?.date ?? ''}: $${c.parsed.y}` } } } }
+    });
+  }
+
+  // Rumours table.
+  document.getElementById('rumours').innerHTML = '<tr><th>First reported</th><th>About</th><th>Claim</th><th>Status</th><th>Reported by</th></tr>' +
+    (SP.rumours || []).map(r => `<tr><td style="white-space:nowrap">${esc(r.first_reported)}</td><td>${esc(r.subject)}</td><td>${esc(r.claim)}</td>
+      <td><span class="badge ${statusClass(r.status)}">${esc(r.status)}</span></td><td><a href="${esc(r.url)}">${esc(r.reported_by)}</a></td></tr>`).join('');
+
+  // Implied vs actual moves.
+  const im = SP.implied_moves || [];
+  if (!im.length) empty('implied', 'No events logged.');
+  else new Chart(document.getElementById('implied'), {
+    type: 'bar', data: { labels: im.map(r => `${r.symbol} ${r.event}`), datasets: [
+      { label: 'Implied (±)', data: im.map(r => r.implied_pct), backgroundColor: css('--series-3') },
+      { label: 'Actual', data: im.map(r => r.actual_pct), backgroundColor: im.map(r => css((r.actual_pct ?? 0) < 0 ? '--tight' : '--loose')) }] },
+    options: { maintainAspectRatio: false, scales: { x: { grid: { display: false } }, y: { ticks: { callback: v => v + '%' } } },
+      plugins: { legend, tooltip: { callbacks: { label: c => `${c.dataset.label}: ${c.parsed.y == null ? 'not found' : c.parsed.y + '%'}`, afterLabel: c => c.datasetIndex ? im[c.dataIndex].actual_basis : '' } } } }
+  });
+
+  // Price vs fundamentals: two charts on the same time window.
+  const bk = P.basket || { series: [] };
+  const fundSeries = [{ name: 'B300 spot / on-demand (%)', points: (P.b300_ratio || []).map(([d, v]) => [d, v * 100]), color: css('--gpu-B300'), width: 2 }];
+  if (!bk.series.length) {
+    empty('basket', pending);
+    lineChart('fundamentals', fundSeries, { yfmt: v => Math.round(v) + '%', events: true });
+  } else {
+    const all = bk.series.flatMap(s => s.points.map(p => ms(p[0])));
+    const lo = Math.min(...all), hi = Math.max(...all);
+    lineChart('basket', bk.series.map(s => ({ name: s.symbol, points: s.points, width: s.symbol.startsWith('Neo') ? 3 : 1.2,
+      color: s.symbol.startsWith('Neo') ? css('--ink') : undefined })), { min: lo, max: hi, yfmt: v => Math.round(v), events: true });
+    const fc = lineChart('fundamentals', fundSeries, { min: lo, max: hi, yfmt: v => Math.round(v) + '%', events: true });
+    if (fc && P.deal_points?.length) {
+      fc.data.datasets.push({ type: 'scatter', label: 'Deal $M per MW (right)', yAxisID: 'y2',
+        data: P.deal_points.filter(([d]) => ms(d) >= lo).map(([d, v]) => ({ x: ms(d), y: v })), backgroundColor: css('--loose'), pointRadius: 5 });
+      fc.options.scales.y2 = { position: 'right', min: 0, grid: { display: false }, ticks: { callback: v => '$' + v + 'M' } };
+      fc.update();
+    }
+  }
+  document.getElementById('basket-note').textContent = bk.start
+    ? `Indexed to 100 on ${bk.start}. The neocloud basket is an equal-weight average of NBIS, CRWV, IREN and APLD; NVDA is shown for comparison. Dashed lines are the numbered events above.`
+    : 'Share prices appear after the first daily price collection.';
+
+  lineChart('attention', (P.attention || []).map(s => ({ ...s, name: s.name.replace(/"/g, '') })), { yfmt: v => v.toFixed(3) + '%', events: true });
+  lineChart('shorts', (P.short_share || []).map(s => ({ name: s.symbol, points: s.points })), { scale: 100, yfmt: v => Math.round(v) + '%', events: true });
+  lineChart('spread', (P.credit_spread || []).map(s => ({ ...s, name: 'HY spread', color: css('--tight') })), { yfmt: v => v.toFixed(2) + '%' });
+
+  // Narrative quadrant: numbered dots, names listed under the chart.
+  const nar = P.narratives || [];
+  if (!nar.length) empty('narratives', 'No narratives scored.');
+  else {
+    const seen = {};
+    const pts = nar.map((n, i) => { const k = n.evidence_score + ',' + n.price_impact_score; const j = seen[k] = (seen[k] ?? -1) + 1;
+      return { x: n.evidence_score + (j ? (j % 2 ? .2 : -.2) * Math.ceil(j / 2) : 0), y: n.price_impact_score, n, i }; });
+    const quad = n => n.evidence_score < 3 && n.price_impact_score >= 3;
+    const numbers = { id: 'numbers', afterDatasetsDraw(chart) {
+      const { ctx } = chart, meta = chart.getDatasetMeta(0), { left, right, top, bottom } = chart.chartArea;
+      const x = chart.scales.x.getPixelForValue(3), y = chart.scales.y.getPixelForValue(3);
+      ctx.save(); ctx.strokeStyle = css('--quiet'); ctx.setLineDash([3, 3]);
+      ctx.beginPath(); ctx.moveTo(x, top); ctx.lineTo(x, bottom); ctx.moveTo(left, y); ctx.lineTo(right, y); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = css('--panel'); ctx.font = 'bold 10px ' + Chart.defaults.font.family; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      meta.data.forEach((pt, i) => ctx.fillText(String(i + 1), pt.x, pt.y + .5));
+      ctx.fillStyle = css('--quiet'); ctx.font = '11px ' + Chart.defaults.font.family; ctx.textAlign = 'left';
+      ctx.fillText('Thin evidence, moving prices', left + 6, top + 10); ctx.restore(); } };
+    new Chart(document.getElementById('narratives'), {
+      type: 'scatter', plugins: [numbers],
+      data: { datasets: [{ label: 'Narratives', data: pts, pointRadius: 9, pointHoverRadius: 11,
+        backgroundColor: nar.map(n => css(quad(n) ? '--tight' : '--accent')) }] },
+      options: { maintainAspectRatio: false, scales: {
+        x: { min: .5, max: 5.5, title: { display: true, text: 'Evidence from facts →' }, afterBuildTicks: ax => { ax.ticks = [1, 2, 3, 4, 5].map(value => ({ value })); } },
+        y: { min: .5, max: 5.5, title: { display: true, text: 'Price impact →' }, afterBuildTicks: ax => { ax.ticks = [1, 2, 3, 4, 5].map(value => ({ value })); } } },
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => `${c.raw.i + 1}. ${c.raw.n.narrative}: ${c.raw.n.note}` } } } }
+    });
+    document.getElementById('narratives-note').innerHTML = nar.map((n, i) => `${i + 1}. ${esc(n.narrative)}`).join(' · ');
+  }
+  const narClass = () => 'pending';
+  document.getElementById('narrative-tests').innerHTML = '<tr><th>#</th><th>Narrative</th><th>Status</th><th>Confirmed if</th><th>Breaks if</th></tr>' +
+    nar.map((n, i) => `<tr><td>${i + 1}</td><td>${esc(n.narrative)}</td><td><span class="badge ${narClass(n.status || '')}" style="white-space:nowrap">${esc(n.status || '')}</span></td>
+      <td>${esc(n.confirmed_if || '')}</td><td>${esc(n.breaks_if || '')}</td></tr>`).join('');
+  document.getElementById('notbuilt-note').innerHTML = 'Not charted, and why: ' +
+    (mk.not_built || []).map(n => `<b>${esc(n.chart)}</b>: ${esc(n.why)}`).join(' ');
+
+  }
 
   // Data health
   document.getElementById('health').innerHTML =
