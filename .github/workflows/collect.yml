@@ -48,6 +48,8 @@ jobs:
         id: markets
         if: github.event_name != 'push'
         continue-on-error: true
+        env:
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
         run: python -m collectors.markets
       - name: Build report and dashboard data
         if: github.event_name != 'push'

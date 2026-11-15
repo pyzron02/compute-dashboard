@@ -87,7 +87,7 @@ dashboard's Facts, Speculation and Perception sections. Free sources only:
 | High-yield credit spread | FRED, ICE BofA US HY OAS | Automatic, daily |
 | Short share of volume | FINRA Reg SHO daily files | Automatic, daily |
 | News attention | GDELT DOC 2.0 API | Automatic, daily |
-| Share prices (shown only as an index) | Stooq daily CSV | Automatic, daily |
+| Share prices (shown only as an index) | Yahoo Finance public chart endpoint | Automatic, daily |
 | $/MW deals, capacity, site events, guidance scorecard and revisions, rumours, analyst targets, implied moves, narrative scores | Hand-entered with a source link per row | `data/manual/*.csv` |
 
 Not built, because no free source allows it: GPU forward prices (exchange data is licensed),

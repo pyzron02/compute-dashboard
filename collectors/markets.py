@@ -13,8 +13,9 @@ Sources and outputs:
       ICE BofA US High Yield option-adjusted spread (BAMLH0A0HYM2)
   FINRA Reg SHO daily short volume (no key) -> data/tidy/short_volume.csv
   GDELT DOC 2.0 timeline (no key)        -> data/tidy/news_attention.csv
-  Stooq daily closes (no key)            -> data/tidy/stock_prices.csv
+  Yahoo Finance chart endpoint (no key)  -> data/tidy/stock_prices.csv (shown only as an index)
 
+Set SEC_USER_AGENT (e.g. a repository secret) to "<name> <contact email>" if SEC refuses the default.
 Usage: python -m collectors.markets [--only sec,tsmc,fred,finra,gdelt,prices] [--data-dir data] [--dry-run]
 """
 
@@ -24,6 +25,7 @@ import datetime as dt
 import gzip
 import io
 import json
+import os
 import re
 import sys
 import time
@@ -37,7 +39,7 @@ from pathlib import Path
 from collectors.common import append_tidy
 
 # SEC asks automated clients to identify themselves; this names the project, not a person.
-SEC_UA = "compute-dashboard research actions@users.noreply.github.com"
+SEC_UA = os.environ.get("SEC_USER_AGENT") or "compute-dashboard actions@users.noreply.github.com"
 WEB_UA = "compute-dashboard/1.0 (+https://github.com/pyzron02/compute-dashboard)"
 
 HYPERSCALERS = ["MSFT", "GOOGL", "AMZN", "META", "ORCL"]
@@ -91,8 +93,11 @@ def fetch(url, ua=WEB_UA, timeout=60, retries=3):
             if (e.code == 429 or e.code >= 500) and attempt < retries:
                 time.sleep(10 * (attempt + 1))
                 continue
-            snippet = e.read()[:300]
-            print(f"HTTP {e.code} from {url}: {snippet!r}", file=sys.stderr)
+            body = e.read()
+            if body[:2] == b"\x1f\x8b":
+                body = gzip.decompress(body)
+            text = re.sub(r"<[^>]+>|\s+", " ", body.decode("utf-8", "replace"))[:300]
+            print(f"HTTP {e.code} from {url}: {text}", file=sys.stderr)
             raise
 
 
@@ -335,16 +340,13 @@ def parse_yahoo(payload, symbol, since):
 
 
 def collect_prices(data_dir, dry_run=False):
-    """Stooq's free CSV first; Yahoo's public chart endpoint if Stooq returns nothing."""
     since = (dt.date.today() - dt.timedelta(days=400)).isoformat()
     rows, missing = [], []
     for s in BASKET:
-        text = fetch(f"https://stooq.com/q/d/l/?s={s.lower()}.us&i=d")
-        got = parse_stooq(text, s, since)
-        if not got:
-            print(f"stooq gave no rows for {s}: {text[:120]!r}", file=sys.stderr)
-            got = parse_yahoo(json.loads(fetch(f"https://query1.finance.yahoo.com/v8/finance/chart/{s}?range=1y&interval=1d")), s, since)
+        url = f"https://query1.finance.yahoo.com/v8/finance/chart/{s}?range=1y&interval=1d"
+        got = parse_yahoo(json.loads(fetch(url)), s, since)
         (rows.extend(got) if got else missing.append(s))
+        time.sleep(1)
     print(f"prices: {len(rows)} rows; missing {missing or 'none'}")
     if missing:
         raise RuntimeError(f"no prices for {missing}")
@@ -363,13 +365,23 @@ def main(argv=None):
     p.add_argument("--data-dir", default="data")
     p.add_argument("--dry-run", action="store_true", help="fetch and parse, write nothing")
     args = p.parse_args(argv)
-    failed = []
+    failed, refused = [], []
     for name in args.only.split(","):
         try:
             COLLECTORS[name](Path(args.data_dir), args.dry_run)
+        except urllib.error.HTTPError as e:
+            if e.code in (403, 429):
+                refused.append(f"{name} (HTTP {e.code})")
+            else:
+                failed.append(name)
+                traceback.print_exc()
         except Exception:
             failed.append(name)
             traceback.print_exc()
+    if refused:
+        # The provider turned the request away (block or rate limit). Earlier data is kept;
+        # the dashboard shows the series' last date. Flagged in the log, not a code failure.
+        print(f"::warning::refused by provider: {', '.join(refused)}")
     if failed:
         print(f"failed: {', '.join(failed)}", file=sys.stderr)
         sys.exit(1)
