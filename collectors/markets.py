@@ -76,6 +76,10 @@ MONTHS = ["January", "February", "March", "April", "May", "June", "July", "Augus
           "September", "October", "November", "December"]
 
 
+class ProviderRefused(Exception):
+    """The source answered, but with a refusal or throttle page instead of data."""
+
+
 def fetch(url, ua=WEB_UA, timeout=60, retries=3):
     """GET a URL as text. Retries 429/5xx with backoff; on a final error, prints the start of
     the response body so the workflow log shows why (e.g. a block page)."""
@@ -306,10 +310,12 @@ def collect_gdelt(data_dir, dry_run=False):
             time.sleep(8)   # GDELT allows about one request every 5 seconds
         params = {"query": q, "mode": "timelinevol", "format": "json", "timespan": "3m", "timelinesmooth": "0"}
         text = fetch("https://api.gdeltproject.org/api/v2/doc/doc?" + urllib.parse.urlencode(params))
-        if not text.strip():
-            print(f"gdelt: empty response for {q}", file=sys.stderr)
-            continue
-        rows += parse_gdelt(json.loads(text), q)
+        try:
+            payload = json.loads(text)
+        except ValueError:
+            # GDELT answers throttled or failed queries with plain text, not JSON.
+            raise ProviderRefused(f"gdelt: non-JSON reply for {q}: {text[:200]!r}")
+        rows += parse_gdelt(payload, q)
     print(f"gdelt: {len(rows)} rows")
     if not rows:
         raise RuntimeError("no GDELT rows")
@@ -378,6 +384,9 @@ def main(argv=None):
             else:
                 failed.append(name)
                 traceback.print_exc()
+        except ProviderRefused as e:
+            print(e, file=sys.stderr)
+            refused.append(f"{name} (refused)")
         except Exception:
             failed.append(name)
             traceback.print_exc()
