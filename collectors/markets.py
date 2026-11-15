@@ -21,10 +21,12 @@ Usage: python -m collectors.markets [--only sec,tsmc,fred,finra,gdelt,prices] [-
 import argparse
 import csv
 import datetime as dt
+import gzip
 import io
 import json
 import re
 import sys
+import time
 import traceback
 import urllib.error
 import urllib.parse
@@ -72,10 +74,26 @@ MONTHS = ["January", "February", "March", "April", "May", "June", "July", "Augus
           "September", "October", "November", "December"]
 
 
-def fetch(url, ua=WEB_UA, timeout=60):
-    req = urllib.request.Request(url, headers={"User-Agent": ua, "Accept-Encoding": "identity"})
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return r.read().decode("utf-8", "replace")
+def fetch(url, ua=WEB_UA, timeout=60, retries=3):
+    """GET a URL as text. Retries 429/5xx with backoff; on a final error, prints the start of
+    the response body so the workflow log shows why (e.g. a block page)."""
+    headers = {"User-Agent": ua, "Accept-Encoding": "gzip, deflate", "Accept": "*/*"}
+    if "sec.gov" in url:
+        headers["Host"] = urllib.parse.urlsplit(url).netloc
+    for attempt in range(retries + 1):
+        try:
+            with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=timeout) as r:
+                body = r.read()
+                if r.headers.get("Content-Encoding") == "gzip" or body[:2] == b"\x1f\x8b":
+                    body = gzip.decompress(body)
+                return body.decode("utf-8", "replace")
+        except urllib.error.HTTPError as e:
+            if (e.code == 429 or e.code >= 500) and attempt < retries:
+                time.sleep(10 * (attempt + 1))
+                continue
+            snippet = e.read()[:300]
+            print(f"HTTP {e.code} from {url}: {snippet!r}", file=sys.stderr)
+            raise
 
 
 # --- SEC ---------------------------------------------------------------------------------
@@ -278,7 +296,9 @@ def parse_gdelt(payload, query):
 
 def collect_gdelt(data_dir, dry_run=False):
     rows = []
-    for q in NEWS_QUERIES:
+    for i, q in enumerate(NEWS_QUERIES):
+        if i:
+            time.sleep(8)   # GDELT allows about one request every 5 seconds
         params = {"query": q, "mode": "timelinevol", "format": "json", "timespan": "6m", "timelinesmooth": "0"}
         text = fetch("https://api.gdeltproject.org/api/v2/doc/doc?" + urllib.parse.urlencode(params))
         rows += parse_gdelt(json.loads(text), q)
@@ -301,11 +321,29 @@ def parse_stooq(text, symbol, since):
     return rows
 
 
+def parse_yahoo(payload, symbol, since):
+    res = (payload.get("chart", {}).get("result") or [None])[0]
+    if not res:
+        return []
+    closes = res["indicators"]["quote"][0]["close"]
+    rows = []
+    for t, c in zip(res["timestamp"], closes):
+        d = dt.datetime.fromtimestamp(t, dt.timezone.utc).date().isoformat()
+        if c is not None and d >= since:
+            rows.append({"date": d, "symbol": symbol, "close": round(float(c), 4), "source": "yahoo"})
+    return rows
+
+
 def collect_prices(data_dir, dry_run=False):
+    """Stooq's free CSV first; Yahoo's public chart endpoint if Stooq returns nothing."""
     since = (dt.date.today() - dt.timedelta(days=400)).isoformat()
     rows, missing = [], []
     for s in BASKET:
-        got = parse_stooq(fetch(f"https://stooq.com/q/d/l/?s={s.lower()}.us&i=d"), s, since)
+        text = fetch(f"https://stooq.com/q/d/l/?s={s.lower()}.us&i=d")
+        got = parse_stooq(text, s, since)
+        if not got:
+            print(f"stooq gave no rows for {s}: {text[:120]!r}", file=sys.stderr)
+            got = parse_yahoo(json.loads(fetch(f"https://query1.finance.yahoo.com/v8/finance/chart/{s}?range=1y&interval=1d")), s, since)
         (rows.extend(got) if got else missing.append(s))
     print(f"prices: {len(rows)} rows; missing {missing or 'none'}")
     if missing:

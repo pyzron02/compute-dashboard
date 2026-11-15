@@ -58,6 +58,13 @@ class CollectorParsers(unittest.TestCase):
         rows = col.parse_stooq(text, "NBIS", "2026-11-12")
         self.assertEqual(rows, [{"date": "2026-11-12", "symbol": "NBIS", "close": 131.67, "source": "stooq"}])
 
+    def test_yahoo(self):
+        payload = {"chart": {"result": [{"timestamp": [1794873600, 1794960000],
+                                         "indicators": {"quote": [{"close": [154.69, None]}]}}]}}
+        rows = col.parse_yahoo(payload, "NBIS", "2026-01-01")
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["close"], 154.69)
+
 
 class Views(unittest.TestCase):
     def test_capex_totals_and_yoy_only_when_complete(self):
