@@ -93,6 +93,19 @@ def guidance(rows):
     return scorecard, revs
 
 
+def nvidia(quarters, call):
+    """Nvidia revenue by fiscal quarter (data center vs the rest, plus the next-quarter guide) and the latest call's key points."""
+    rows = []
+    for q in sorted(quarters, key=lambda r: r["period_end"]):
+        rev, dc = _f(q["revenue"]), _f(q["data_center"])
+        rows.append({"quarter": q["fiscal_quarter"], "period_end": q["period_end"], "kind": q["kind"], "revenue": rev,
+                     "data_center": dc, "other": round(rev - dc, 1) if rev is not None and dc is not None else None,
+                     "hyperscale": _f(q["hyperscale"]), "aci_e": _f(q["aci_e"]), "edge": _f(q["edge"]),
+                     "gross_margin": _f(q["gross_margin_gaap"]), "note": q["note"], "url": q["url"]})
+    latest = max((r["as_of"] for r in call), default=None)
+    return {"quarters": rows, "call_date": latest, "call": [r for r in call if r["as_of"] == latest]}
+
+
 def latest_close(prices, symbol):
     rows = sorted((r for r in prices if r["symbol"] == symbol), key=lambda r: r["date"])
     return {"date": rows[-1]["date"], "close": float(rows[-1]["close"])} if rows else None
@@ -162,6 +175,7 @@ def build_markets(data_dir, scarcity):
             "capacity": [{**c, "contracted_gw": _f(c["contracted_gw"]), "live_gw": _f(c["live_gw"])}
                          for c in read_csv(m / "capacity.csv")],
             "sites": sorted(read_csv(m / "site_events.csv"), key=lambda r: r["date"]),
+            "nvidia": nvidia(read_csv(m / "nvidia_quarters.csv"), read_csv(m / "nvidia_call.csv")),
             "tsmc": tsmc(read_csv(t / "tsmc_revenue.csv"), read_csv(m / "tsmc_revenue_seed.csv")),
         },
         "speculation": {
@@ -202,6 +216,11 @@ MARKET_SOURCES = [
     {"name": "Nebius funding figures (files 6-K without quarterly XBRL)", "origin": "Nebius Q3 2026 results tables, entered by hand",
      "url": "https://www.stocktitan.net/news/NBIS/nebius-reports-third-quarter-2026-financial-4dtv2j8ebv4v.html",
      "collector": "data/manual/funding_manual.csv", "cadence": "Manual, each quarter", "file": "data/manual/funding_manual.csv"},
+    {"name": "Nvidia quarterly revenue, guidance and earnings-call points",
+     "origin": "Nvidia quarterly results press releases; call figures from a public transcript (third-party, check against the 10-Q)",
+     "url": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2027",
+     "collector": "data/manual/nvidia_quarters.csv, data/manual/nvidia_call.csv", "cadence": "Manual, each Nvidia report",
+     "file": "data/manual/nvidia_quarters.csv, data/manual/nvidia_call.csv"},
     {"name": "TSMC monthly revenue", "origin": "TSMC monthly revenue 6-K filings on SEC EDGAR; 2026 history from TSMC investor relations",
      "url": "https://investor.tsmc.com/english/monthly-revenue/2026", "collector": "collectors/markets.py",
      "cadence": "Daily check; TSMC reports around the 10th", "file": "data/tidy/tsmc_revenue.csv, data/manual/tsmc_revenue_seed.csv"},

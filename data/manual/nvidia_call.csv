@@ -1,0 +1,16 @@
+as_of,topic,item,value,why_it_matters,url
+2026-11-17,Customers,Hyperscale revenue,"$60.1B, 56% of data center; +23% q/q",CSPs still the larger half,https://singjupost.com/nvidia-q3-fy27-earnings-call-transcript/
+2026-11-17,Customers,"AI cloud, industrial and enterprise revenue","$47.5B; +18% q/q, about 3x y/y",Where neoclouds and sovereigns sit; the fastest-growing half,https://singjupost.com/nvidia-q3-fy27-earnings-call-transcript/
+2026-11-17,Customers,Frontier labs,About 15% of data-center revenue this year,Direct lab buying,https://singjupost.com/nvidia-q3-fy27-earnings-call-transcript/
+2026-11-17,Outlook,Q4 FY27 revenue,"$130B plus or minus 3% (14 weeks), no China",About 12% above Q3; Bloomberg had Q3 at $109.2B and Nvidia did $115.8B,https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2027
+2026-11-17,Outlook,FY28 revenue growth,About 75% (was about 70%),Demand outlook raised by the interim CEO,https://singjupost.com/nvidia-q3-fy27-earnings-call-transcript/
+2026-11-17,Margins,Gross margin,"Q4 71-72% (Q3 74.8%); FY28 72-73%","Kress: Q4 is the bottom, honouring orders taken before a price change as supply costs rose",https://singjupost.com/nvidia-q3-fy27-earnings-call-transcript/
+2026-11-17,Supply,Purchase commitments,$390B ($279B in the July 10-Q),Nvidia is locking up supply; GPUs stay allocated,https://singjupost.com/nvidia-q3-fy27-earnings-call-transcript/
+2026-11-17,Supply,Memory and packaging,"""We've secured memory, we've secured advanced packaging""; demand still outpaces supply",New Kinsus/SEMCO/SPIL deals,https://singjupost.com/nvidia-q3-fy27-earnings-call-transcript/
+2026-11-17,Financing,Guarantees,"$118B total, incl. $105B credit support for the OpenAI PORTS-Pike campus",Most of the backstop book is one OpenAI site,https://singjupost.com/nvidia-q3-fy27-earnings-call-transcript/
+2026-11-17,Financing,Neocloud commitments,$32B,"Earlier press estimate was about $36B",https://singjupost.com/nvidia-q3-fy27-earnings-call-transcript/
+2026-11-17,Financing,Neocloud guarantee terms,"Starts only when a project is ready; if it is delayed the guarantee no longer applies","Raises the cost of a site delay; Kress says not a new policy",https://singjupost.com/nvidia-q3-fy27-earnings-call-transcript/
+2026-11-17,Financing,Future support,"""Rigorously evaluating future investments, commitments, and guarantees""; selective with neoclouds",Fewer new backstops as other capital arrives,https://finance.yahoo.com/technology/ai/articles/remain-thoughtful-nvidia-says-continue-231532064.html
+2026-11-17,Pricing,GPU rental prices,"Hopper re-contracted at up to 2x original price; B300 rentals up more than 60% since launch",Pricing power still with the GPU owners,https://singjupost.com/nvidia-q3-fy27-earnings-call-transcript/
+2026-11-17,Demand,Tokens,"OpenRouter weekly tokens 35x y/y; agentic about 80%; token prices down nearly 60% since May",Volume outrunning price cuts,https://singjupost.com/nvidia-q3-fy27-earnings-call-transcript/
+2026-11-17,China,China data center,"$2.4B licensed Hopper in Q3; none in the Q4 guide",Q4 guide has no China cushion,https://singjupost.com/nvidia-q3-fy27-earnings-call-transcript/

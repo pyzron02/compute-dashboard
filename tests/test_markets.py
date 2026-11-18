@@ -105,5 +105,20 @@ class Views(unittest.TestCase):
         self.assertEqual(got[-1]["avg3"], 310.0)
 
 
+class NvidiaView(unittest.TestCase):
+    def test_split_guide_and_latest_call(self):
+        q = [{"fiscal_quarter": "Q4", "period_end": "2027-01-31", "kind": "guide", "revenue": "130", "data_center": "",
+              "hyperscale": "", "aci_e": "", "edge": "", "gross_margin_gaap": "71.5", "note": "", "url": "u"},
+             {"fiscal_quarter": "Q3", "period_end": "2026-10-25", "kind": "actual", "revenue": "115.8", "data_center": "107.6",
+              "hyperscale": "60.1", "aci_e": "47.5", "edge": "8.2", "gross_margin_gaap": "74.8", "note": "", "url": "u"}]
+        call = [{"as_of": "2026-08-26", "item": "old"}, {"as_of": "2026-11-17", "item": "new"}]
+        v = markets.nvidia(q, call)
+        self.assertEqual([r["quarter"] for r in v["quarters"]], ["Q3", "Q4"])
+        self.assertEqual(v["quarters"][0]["other"], 8.2)
+        self.assertIsNone(v["quarters"][1]["other"])
+        self.assertEqual(v["call_date"], "2026-11-17")
+        self.assertEqual([r["item"] for r in v["call"]], ["new"])
+
+
 if __name__ == "__main__":
     unittest.main()
