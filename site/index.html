@@ -135,6 +135,12 @@
   <div class="sub">Quarterly purchases of property and equipment, $B, by calendar quarter the period ends in. Line: year-on-year change of the five-company total.</div>
   <div class="panel"><div class="chart"><canvas id="capex" aria-label="Hyperscaler capex by quarter"></canvas></div></div>
 
+  <h3>Nvidia revenue and guidance</h3>
+  <div class="sub">Revenue by fiscal quarter, $B: data center against everything else, with the next-quarter guide in a lighter bar. Line: GAAP gross margin.</div>
+  <div class="panel"><div class="chart short"><canvas id="nvidia" aria-label="Nvidia revenue by quarter and gross margin"></canvas></div></div>
+  <p class="note" id="nvidia-note"></p>
+  <div class="panel scroll"><table id="nvidia-call"></table></div>
+
   <h3>Neocloud funding stack</h3>
   <div class="sub">Who is paying for the build: lenders (debt) or customers (deferred revenue, mostly prepayments). $B at each quarter end.</div>
   <div class="controls" id="fund-buttons" role="group" aria-label="Company"></div>
@@ -518,6 +524,33 @@
         plugins: { legend, tooltip: { callbacks: { label: c => c.dataset.yAxisID === 'y2' ? `YoY: ${Math.round(c.parsed.y)}%` : `${c.dataset.label}: $${c.parsed.y}B` } } } }
     });
   }
+
+  // Nvidia: revenue split by quarter, guide bar, gross-margin line, and the latest call's points.
+  const NV = F.nvidia || { quarters: [], call: [] };
+  if (!NV.quarters.length) empty('nvidia', 'No Nvidia quarters logged.');
+  else {
+    const q = NV.quarters, act = r => r.kind === 'actual';
+    new Chart(document.getElementById('nvidia'), {
+      data: { labels: q.map(r => r.quarter + (act(r) ? '' : ' (guide)')), datasets: [
+        { type: 'bar', label: 'Data center', data: q.map(r => act(r) ? r.data_center : null), backgroundColor: css('--series-1'), stack: 'r', yAxisID: 'y' },
+        { type: 'bar', label: 'Other', data: q.map(r => act(r) ? r.other : null), backgroundColor: css('--series-2'), stack: 'r', yAxisID: 'y' },
+        { type: 'bar', label: 'Total (no split given)', data: q.map(r => act(r) && r.data_center == null ? r.revenue : null), backgroundColor: css('--series-3'), stack: 'r', yAxisID: 'y' },
+        { type: 'bar', label: 'Guide midpoint', data: q.map(r => act(r) ? null : r.revenue), backgroundColor: css('--series-4'), stack: 'r', yAxisID: 'y' },
+        { type: 'line', label: 'Gross margin (GAAP)', data: q.map(r => r.gross_margin), borderColor: css('--ink'), backgroundColor: css('--ink'),
+          yAxisID: 'y2', pointRadius: 3, spanGaps: true, order: -1 }] },
+      options: { maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, ticks: { callback: v => '$' + v + 'B' } },
+          y2: { position: 'right', min: 60, max: 80, grid: { display: false }, ticks: { callback: v => v + '%' } } },
+        plugins: { legend, tooltip: { filter: c => c.parsed.y != null, callbacks: { label: c => c.dataset.yAxisID === 'y2' ? `Gross margin: ${c.parsed.y}%` : `${c.dataset.label}: $${c.parsed.y}B` } } } }
+    });
+    const last = [...q].reverse().find(act);
+    document.getElementById('nvidia-note').innerHTML = last && last.hyperscale != null
+      ? `${esc(last.quarter)} data center: hyperscale $${last.hyperscale}B, AI cloud, industrial and enterprise (where neoclouds sit) $${last.aci_e}B. <a href="${esc(last.url)}">Release</a>.` : '';
+  }
+  document.getElementById('nvidia-call').innerHTML = (NV.call || []).length
+    ? `<tr><th>Topic</th><th>Item (call of ${esc(NV.call_date)})</th><th>What was said</th><th>Why it matters</th></tr>` +
+      NV.call.map(r => `<tr><td>${esc(r.topic)}</td><td>${esc(r.item)}</td><td><a href="${esc(r.url)}">${esc(r.value)}</a></td><td>${esc(r.why_it_matters)}</td></tr>`).join('')
+    : '<tr><td class="empty">No call notes logged.</td></tr>';
 
   // Funding stack with a company switcher.
   const fund = F.funding || [];

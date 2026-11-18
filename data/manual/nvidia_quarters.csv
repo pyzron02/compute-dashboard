@@ -1,0 +1,6 @@
+fiscal_quarter,period_end,kind,revenue,data_center,hyperscale,aci_e,edge,gross_margin_gaap,note,url
+Q3 FY26,2025-10-26,actual,57.0,51.2,,,,73.4,Year-ago quarter,https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2027
+Q1 FY27,2026-04-26,actual,81.6,,,,,74.9,Segment split not in the Q2 release,https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027
+Q2 FY27,2026-07-26,actual,96.2,89.0,,,7.2,75.0,,https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027
+Q3 FY27,2026-10-25,actual,115.8,107.6,60.1,47.5,8.2,74.8,"Hyperscale and AI cloud, industrial and enterprise split from the call",https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2027
+Q4 FY27,2027-01-31,guide,130.0,,,,,71.5,"Guide: $130B plus or minus 3%, 14 weeks, no China data-center compute; margin 71-72%",https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2027

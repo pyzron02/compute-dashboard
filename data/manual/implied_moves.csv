@@ -1,3 +1,6 @@
 date,symbol,event,implied_pct,actual_pct,actual_basis,url
 2026-11-12,NBIS,Q3 2026 results,20,-14.9,"Morning trade, per IBTimes",https://www.investing.com/news/stock-market-news/nebius-earnings-preview-what-to-watch-when-q3-results-hit-thursday-93CH-5019658
 2026-11-11,CRWV,Q3 2026 results,,25,"Close on Nov 11",https://vestedfinance.com/blog/us-stocks/coreweave-q3-earnings-2026/
+2026-11-17,NVDA,Q3 FY27 results,,3,"After hours, per TradingKey (up to 4% at first)",https://www.tradingkey.com/analysis/stocks/us-stocks/262309793-nvidia-earnings-report-q3-rubin-ramp-data-center-growth-revenue-guidance-gross-margin-tradingkey
+2026-11-17,CRWV,Nvidia Q3 results (read-across),,10,"After hours, 'more than 10%' per Axios",https://finance.yahoo.com/technology/ai/articles/remain-thoughtful-nvidia-says-continue-231532064.html
+2026-11-17,NBIS,Nvidia Q3 results (read-across),,10,"After hours, 'more than 10%' per Axios",https://finance.yahoo.com/technology/ai/articles/remain-thoughtful-nvidia-says-continue-231532064.html
