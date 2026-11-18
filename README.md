@@ -46,6 +46,13 @@ throughput from Epoch AI), `data/manual/events.csv` (chart annotations).
 The page also shows how often each GPU's spot price sits at its on-demand cap (within 3%),
 and the hour-of-day and weekday shape of spot prices with the daily and weekly trend divided out.
 
+Under each chart is a reading built by `analysis/interpret.py` on every rebuild. It has a fixed
+"how to read this chart" note, a "now" sentence computed from the latest data, what that means for
+the neocloud thesis, and a tone (supports, against, mixed, or no reading yet). The rules use the
+same thresholds as the thesis watch: spot at 60% or more of on-demand is tight, under 50% for seven
+days fires the B300 trigger, and new deals at or above $25M per MW count as pricing power. The
+readings are rule-based summaries, not advice; check them against the linked sources.
+
 ## Weekly digest
 
 `analysis/digest.py` writes `reports/weekly/<date>.md`: the week's biggest moves, Azure list

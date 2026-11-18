@@ -56,6 +56,16 @@
   .badge.balanced { color: var(--balanced); background: color-mix(in srgb, var(--balanced) 14%, transparent); }
   .badge.loose { color: var(--loose); background: color-mix(in srgb, var(--loose) 14%, transparent); }
   .up { color: var(--tight); } .down { color: var(--loose); }
+  .reading { margin-top: 10px; padding: 10px 12px; border-left: 3px solid var(--line); background: color-mix(in srgb, var(--panel) 60%, transparent);
+             border-radius: 0 8px 8px 0; font-size: 13.5px; line-height: 1.45; }
+  .reading:empty { display: none; }
+  .reading p { margin: 0 0 6px; }
+  .reading .tone { font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .03em; margin-bottom: 4px; }
+  .reading.supports { border-left-color: var(--loose); } .reading.supports .tone { color: var(--loose); }
+  .reading.against { border-left-color: var(--tight); } .reading.against .tone { color: var(--tight); }
+  .reading.mixed { border-left-color: var(--balanced); } .reading.mixed .tone { color: var(--balanced); }
+  .reading.none .tone { color: var(--quiet); }
+  .reading details { color: var(--quiet); } .reading summary { cursor: pointer; }
   .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; margin-top: 12px; }
   .chart { position: relative; height: 340px; }
   .controls { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 4px; }
@@ -66,6 +76,7 @@
   .chart.short { height: 240px; }
   .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .pair .panel { margin-top: 12px; }
+  .pair > div { min-width: 0; }
   @media (max-width: 720px) { .pair { grid-template-columns: 1fr; } }
   table { border-collapse: collapse; width: 100%; font-size: 13px; font-variant-numeric: tabular-nums; }
   th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
@@ -89,6 +100,7 @@
 
   <div class="tiles" id="tiles"></div>
   <p class="note">Nebius spot price now (median across its regions) and its change over 7 days. The badge compares spot with on-demand: tight means spot is at least 60% of on-demand, loose means under 35%.</p>
+  <div class="reading" id="r-tiles"></div>
 
   <h2 id="thesis">Thesis watch: Nebius and the neocloud trade</h2>
   <div class="sub">Signals that would change the view. Fired means the thesis needs a rethink; watch means it is moving the wrong way.</div>
@@ -99,17 +111,20 @@
   <div class="sub">The closer to 100%, the less idle capacity a provider has for that GPU.</div>
   <div class="panel"><div class="chart"><canvas id="scarcity" aria-label="Spot price as a share of on-demand by GPU"></canvas></div></div>
   <p class="note" id="scarcity-note"></p>
+  <div class="reading" id="r-scarcity"></div>
 
   <h2>Nebius spot price by region</h2>
   <div class="sub">Hourly average, USD per GPU-hour. Dashed lines mark events.</div>
   <div class="controls" id="gpu-buttons" role="group" aria-label="GPU"></div>
   <div class="panel"><div class="chart"><canvas id="regional" aria-label="Nebius hourly spot price by region"></canvas></div></div>
   <p class="note" id="events-note"></p>
+  <div class="reading" id="r-regional"></div>
 
   <h2>Time at the price cap</h2>
   <div class="sub">Share of each day that Nebius spot sat within 3% of its on-demand price, meaning spot capacity was effectively sold out.</div>
   <div class="panel"><div class="chart short"><canvas id="atcap" aria-label="Share of each day at the price cap"></canvas></div></div>
   <p class="note" id="atcap-note"></p>
+  <div class="reading" id="r-atcap"></div>
 
   <h2>When prices peak</h2>
   <div class="sub">Nebius spot price by time of day and day of week, relative to the same GPU's level that day or week (trend removed).</div>
@@ -119,6 +134,7 @@
     <div class="panel"><div class="chart short"><canvas id="byweekday" aria-label="Price by day of week"></canvas></div></div>
   </div>
   <p class="note" id="shape-note"></p>
+  <div class="reading" id="r-shape"></div>
 
   <h2>Prices by provider and tier</h2>
   <div class="controls" id="unit-buttons" role="group" aria-label="Unit">
@@ -127,6 +143,7 @@
   </div>
   <div class="panel scroll"><table id="prices"></table></div>
   <p class="note" id="prices-note"></p>
+  <div class="reading" id="r-prices"></div>
 
   <h2 id="facts">Facts: filings and reported numbers</h2>
   <div class="sub">Figures a company or regulator reported. Each chart links its source in the table at the bottom.</div>
@@ -134,6 +151,7 @@
   <h3>Hyperscaler capex</h3>
   <div class="sub">Quarterly purchases of property and equipment, $B, by calendar quarter the period ends in. Line: year-on-year change of the five-company total.</div>
   <div class="panel"><div class="chart"><canvas id="capex" aria-label="Hyperscaler capex by quarter"></canvas></div></div>
+  <div class="reading" id="r-capex"></div>
 
   <h3>Neocloud funding stack</h3>
   <div class="sub">Who is paying for the build: lenders (debt) or customers (deferred revenue, mostly prepayments). $B at each quarter end.</div>
@@ -143,21 +161,25 @@
     <div class="panel"><div class="chart short"><canvas id="interest" aria-label="Interest expense against operating income"></canvas></div></div>
   </div>
   <p class="note" id="funding-note"></p>
+  <div class="reading" id="r-funding"></div>
 
   <h3>Price per MW on new contracts</h3>
   <div class="sub">One dot per disclosed deal, $M of revenue per MW per year. Higher means more pricing power.</div>
   <div class="panel"><div class="chart short"><canvas id="deals" aria-label="Deal price per MW"></canvas></div></div>
+  <div class="reading" id="r-deals"></div>
 
   <div class="pair">
     <div>
       <h3>Contracted vs live capacity</h3>
       <div class="sub">GW. The gap is what still has to be built.</div>
       <div class="panel"><div class="chart short"><canvas id="capacity" aria-label="Contracted and live capacity"></canvas></div></div>
+  <div class="reading" id="r-capacity"></div>
     </div>
     <div>
       <h3>Site delays and cancellations</h3>
       <div class="sub">Power and financing are now the delivery constraint.</div>
       <div class="panel"><div class="chart short"><canvas id="sites" aria-label="Site events timeline"></canvas></div></div>
+  <div class="reading" id="r-sites"></div>
     </div>
   </div>
   <p class="note" id="sites-note"></p>
@@ -165,6 +187,7 @@
   <h3>TSMC monthly revenue</h3>
   <div class="sub">NT$ billion, with a 3-month average. An early read on chip supply.</div>
   <div class="panel"><div class="chart short"><canvas id="tsmc" aria-label="TSMC monthly revenue"></canvas></div></div>
+  <div class="reading" id="r-tsmc"></div>
 
   <h2 id="speculation">Speculation: forecasts and unconfirmed reports</h2>
   <div class="sub">Promises and rumours, checked against what happened.</div>
@@ -177,11 +200,13 @@
       <h3>Guidance revisions</h3>
       <div class="sub">Each bar is a guided range, as % of the first guide&#39;s midpoint so items of different size share an axis. Hover for $.</div>
       <div class="panel"><div class="chart short"><canvas id="revisions" aria-label="Guidance revisions"></canvas></div></div>
+  <div class="reading" id="r-revisions"></div>
     </div>
     <div>
       <h3>Analyst price targets</h3>
       <div class="sub">Published targets ($) against the latest close (bar).</div>
       <div class="panel"><div class="chart short"><canvas id="targets" aria-label="Analyst price targets"></canvas></div></div>
+  <div class="reading" id="r-targets"></div>
     </div>
   </div>
 
@@ -191,6 +216,7 @@
   <h3>Implied vs actual move on earnings</h3>
   <div class="sub">Options-implied move (±) against the reported move, %.</div>
   <div class="panel"><div class="chart short"><canvas id="implied" aria-label="Implied and actual earnings moves"></canvas></div></div>
+  <div class="reading" id="r-implied"></div>
 
   <h2 id="perception">Perception: mood and narrative</h2>
   <div class="sub">What the market feels, set beside the facts it should follow.</div>
@@ -200,17 +226,20 @@
   <div class="panel"><div class="chart short"><canvas id="basket" aria-label="Indexed share prices"></canvas></div>
     <div class="chart short"><canvas id="fundamentals" aria-label="B300 scarcity and deal prices"></canvas></div></div>
   <p class="note" id="basket-note"></p>
+  <div class="reading" id="r-basket"></div>
 
   <div class="pair">
     <div>
       <h3>News attention</h3>
       <div class="sub">Share of global online news mentioning each term (GDELT).</div>
       <div class="panel"><div class="chart short"><canvas id="attention" aria-label="News attention"></canvas></div></div>
+  <div class="reading" id="r-attention"></div>
     </div>
     <div>
       <h3>Short share of daily volume</h3>
       <div class="sub">FINRA short sale volume over total volume, 5-trading-day window.</div>
       <div class="panel"><div class="chart short"><canvas id="shorts" aria-label="Short share of volume"></canvas></div></div>
+  <div class="reading" id="r-shorts"></div>
     </div>
   </div>
 
@@ -219,12 +248,14 @@
       <h3>High-yield credit spread</h3>
       <div class="sub">ICE BofA US High Yield OAS, %. Lenders' view of risk.</div>
       <div class="panel"><div class="chart short"><canvas id="spread" aria-label="High-yield credit spread"></canvas></div></div>
+  <div class="reading" id="r-spread"></div>
     </div>
     <div>
       <h3>Narratives: evidence vs price impact</h3>
       <div class="sub">Hand-scored 1–5. Top left: moving prices on thin evidence.</div>
       <div class="panel"><div class="chart short"><canvas id="narratives" aria-label="Narrative evidence and price impact"></canvas></div></div>
       <p class="note" id="narratives-note"></p>
+  <div class="reading" id="r-narratives"></div>
     </div>
   </div>
 
@@ -253,7 +284,6 @@
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const dayLabel = ms => { const d = new Date(ms); return months[d.getUTCMonth()] + ' ' + d.getUTCDate(); };
   const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-
   let data;
   try {
     data = await (await fetch('data.json', { cache: 'no-store' })).json();
@@ -264,6 +294,17 @@
   const gen = new Date(data.generated);
   document.getElementById('asof').textContent =
     'Updated ' + dayLabel(gen.getTime()) + ', ' + gen.getUTCFullYear() + ' at ' + data.generated.slice(11, 16) + ' UTC';
+
+  // Readings: what each chart shows, what it says now, and what that means for the thesis.
+  const toneLabel = { supports: 'Supports the thesis', against: 'Against the thesis', mixed: 'Mixed for the thesis', none: 'No reading yet' };
+  Object.entries(data.readings || {}).forEach(([key, r]) => {
+    const el = document.getElementById('r-' + key); if (!el) return;
+    el.className = 'reading ' + (r.tone || 'none');
+    el.innerHTML = `<div class="tone">${esc(toneLabel[r.tone] || '')}</div>` +
+      `<p><strong>Now:</strong> ${esc(r.now)}</p>` +
+      (r.means ? `<p><strong>What it means:</strong> ${esc(r.means)}</p>` : '') +
+      (r.how ? `<details><summary>How to read this chart</summary>${esc(r.how)}</details>` : '');
+  });
 
   // Tiles
   document.getElementById('tiles').innerHTML = data.tiles.map(t => `
@@ -513,7 +554,7 @@
         { type: 'line', label: 'Total, year on year', data: F.capex.map(r => r.yoy == null ? null : r.yoy * 100), borderColor: css('--ink'),
           backgroundColor: css('--ink'), yAxisID: 'y2', pointRadius: 3, spanGaps: true }] },
       options: { maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
-        scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, ticks: { callback: v => '$' + v + 'B' } },
+        scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, ticks: { callback: v => '$' + (+v.toFixed(3)) + 'B' } },
           y2: { position: 'right', grid: { display: false }, ticks: { callback: v => v + '%' } } },
         plugins: { legend, tooltip: { callbacks: { label: c => c.dataset.yAxisID === 'y2' ? `YoY: ${Math.round(c.parsed.y)}%` : `${c.dataset.label}: $${c.parsed.y}B` } } } }
     });
@@ -530,7 +571,7 @@
     const lines = [['interest_expense', 'Interest expense', '--tight'], ['operating_income', 'Operating income', '--loose']]
       .map(([k, l, c]) => ({ label: l, data: rows.map(r => r[k]), backgroundColor: css(c) }));
     const money3 = v => v == null ? '–' : '$' + v.toFixed(2) + 'B';
-    const opts = { maintainAspectRatio: false, scales: { x: { grid: { display: false } }, y: { ticks: { callback: v => '$' + v + 'B' } } },
+    const opts = { maintainAspectRatio: false, scales: { x: { grid: { display: false } }, y: { ticks: { callback: v => '$' + (+v.toFixed(3)) + 'B' } } },
       plugins: { legend, tooltip: { callbacks: { label: c => `${c.dataset.label}: ${money3(c.parsed.y)}` } } } };
     fundChart?.destroy(); intChart?.destroy();
     fundChart = new Chart(document.getElementById('funding'), { type: 'bar', data: { labels, datasets: bars }, options: opts });
