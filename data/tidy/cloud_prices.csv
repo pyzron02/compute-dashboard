@@ -49934,3 +49934,16 @@ date,source,region,sku,gpu_model,gpus,tier,usd_per_vm_hour,usd_per_gpu_hour
 2026-11-22,nebius,us-central1,gpu-b200-sxm,B200,1,spot,2.0,2.0
 2026-11-22,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,1,spot,1.39,1.39
 2026-11-22,nebius,us-north1,gpu-b300-sxm,B300,1,spot,5.29,5.29
+2026-11-23,nebius,eu-north1,gpu-h200-sxm,H200,1,spot,2.0,2.0
+2026-11-23,nebius,eu-north1,gpu-h100-sxm,H100,1,spot,1.6,1.6
+2026-11-23,nebius,eu-north2,gpu-h200-sxm,H200,1,spot,1.5,1.5
+2026-11-23,nebius,eu-south1,gpu-rtx6000-a,RTX PRO 6000,1,spot,1.38,1.38
+2026-11-23,nebius,eu-west1,gpu-h200-sxm,H200,1,spot,1.4,1.4
+2026-11-23,nebius,eu-west2,gpu-b300-sxm,B300,1,spot,6.5,6.5
+2026-11-23,nebius,me-west1,gpu-b200-sxm-a,B200,1,spot,3.95,3.95
+2026-11-23,nebius,uk-south1,gpu-b300-sxm,B300,1,spot,6.4,6.4
+2026-11-23,nebius,uk-south2,gpu-rtx6000-a,RTX PRO 6000,1,spot,1.38,1.38
+2026-11-23,nebius,us-central1,gpu-h200-sxm,H200,1,spot,1.1,1.1
+2026-11-23,nebius,us-central1,gpu-b200-sxm,B200,1,spot,2.6,2.6
+2026-11-23,nebius,us-central1,gpu-rtx6000,RTX PRO 6000,1,spot,1.5,1.5
+2026-11-23,nebius,us-north1,gpu-b300-sxm,B300,1,spot,8.7,8.7
