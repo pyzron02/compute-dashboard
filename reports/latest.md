@@ -1,21 +1,21 @@
 # Compute price report
 
-Generated 2026-11-23 18:48 UTC from `data/`. Prices are USD per GPU-hour, Linux, medians across regions unless stated.
+Generated 2026-11-24 17:48 UTC from `data/`. Prices are USD per GPU-hour, Linux, medians across regions unless stated.
 
 ## 1. Price levels by provider and tier
 
-Azure snapshot 2026-11-23; Nebius spot snapshot 2026-11-23; Nebius on-demand from its pricing page.
+Azure snapshot 2026-11-24; Nebius spot snapshot 2026-11-24; Nebius on-demand from its pricing page.
 
 | GPU | Azure on-demand | Azure 3-yr reserved | Azure spot | Nebius on-demand | Nebius spot | Azure ÷ Nebius on-demand |
 | --- | --- | --- | --- | --- | --- | --- |
 | GB200 | $33.53 | $14.75 | $33.53 |  |  |  |
-| B300 |  |  |  | $9.50 | $6.80 |  |
-| B200 |  |  |  | $8.50 | $3.27 |  |
-| H200 | $13.25 | $6.60 | $13.25 | $5.40 | $1.55 | 2.5x |
-| H100 | $11.06 | $5.49 | $2.45 | $4.50 | $2.20 | 2.5x |
+| B300 |  |  |  | $9.50 | $9.79 |  |
+| B200 |  |  |  | $8.50 | $3.02 |  |
+| H200 | $13.25 | $6.60 | $13.25 | $5.40 | $1.85 | 2.5x |
+| H100 | $11.06 | $5.49 | $2.45 | $4.50 | $1.70 | 2.5x |
 | MI300X | $7.50 | $3.29 | $1.39 |  |  |  |
 | A100 | $4.92 | $1.80 | $0.97 |  |  |  |
-| RTX PRO 6000 |  |  |  |  | $1.38 |  |
+| RTX PRO 6000 |  |  |  |  | $1.79 |  |
 
 ## 2. Spot discount
 
@@ -28,10 +28,10 @@ A spot price close to the on-demand price means the provider has little idle cap
 | Azure | H100 | 22% |
 | Azure | MI300X | 18% |
 | Azure | A100 | 20% |
-| Nebius | B300 | 72% |
-| Nebius | B200 | 39% |
-| Nebius | H200 | 29% |
-| Nebius | H100 | 49% |
+| Nebius | B300 | 103% |
+| Nebius | B200 | 36% |
+| Nebius | H200 | 34% |
+| Nebius | H100 | 38% |
 
 ## 3. Nebius spot prices over time
 
@@ -39,17 +39,17 @@ Hourly average spot price, median across regions.
 
 | GPU | Latest median spot | 7-day change | 30-day change | 30-day low | 30-day high | Regions now (low to high) |
 | --- | --- | --- | --- | --- | --- | --- |
-| B300 | $6.65 | +88% | +115% | $0.99 | $12.50 | 3 ($6.55 to $8.85) |
-| B200 | $3.27 | +6% | +6% | $0.99 | $8.65 | 2 ($2.75 to $3.80) |
-| H200 | $1.40 | -42% | -31% | $0.79 | $5.39 | 4 ($1.37 to $2.15) |
-| H100 | $1.90 | -12% | +100% | $0.79 | $2.37 | 1 ($1.90 to $1.90) |
-| RTX PRO 6000 | $1.38 | +0% | +75% | $0.79 | $1.79 | 3 ($1.38 to $1.65) |
+| B300 | $10.09 | +24% | +477% | $0.99 | $12.50 | 3 ($3.64 to $10.35) |
+| B200 | $2.95 | -28% | -52% | $0.99 | $8.65 | 2 ($2.90 to $3.00) |
+| H200 | $1.93 | -15% | +89% | $0.79 | $5.39 | 4 ($1.69 to $2.32) |
+| H100 | $1.85 | +6% | +99% | $0.79 | $2.37 | 1 ($1.85 to $1.85) |
+| RTX PRO 6000 | $1.79 | +30% | +30% | $0.79 | $1.79 | 3 ($1.28 to $2.13) |
 
 Prices held one fixed rate until 2026-10-08, when market-based spot pricing appears to start. Changes measured across that date mix the old fixed rate with market prices.
 
 ## 4. Azure over time
 
-28 daily snapshot(s) so far. Day-over-day and weekly changes appear once a week of history exists.
+29 daily snapshot(s) so far. Day-over-day and weekly changes appear once a week of history exists.
 
 ## Sources
 
