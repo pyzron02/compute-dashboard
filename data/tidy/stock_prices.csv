@@ -35,6 +35,10 @@ date,symbol,close,source
 2025-11-24,APLD,23.79,yahoo
 2025-11-24,NVDA,182.55,yahoo
 2025-11-25,NBIS,88.88,yahoo
+2025-11-25,CRWV,71.29,yahoo
+2025-11-25,IREN,47.47,yahoo
+2025-11-25,APLD,23.74,yahoo
+2025-11-25,NVDA,177.82,yahoo
 2025-11-26,NBIS,94.69,yahoo
 2025-11-28,NBIS,94.87,yahoo
 2025-12-01,NBIS,100.15,yahoo
@@ -285,8 +289,7 @@ date,symbol,close,source
 2026-11-20,NBIS,81.31,yahoo
 2026-11-23,NBIS,97.8,yahoo
 2026-11-24,NBIS,87.31,yahoo
-2026-11-25,NBIS,81.0285,yahoo
-2025-11-25,CRWV,71.29,yahoo
+2026-11-25,NBIS,84.99,yahoo
 2025-11-26,CRWV,74.29,yahoo
 2025-11-28,CRWV,73.12,yahoo
 2025-12-01,CRWV,77.06,yahoo
@@ -537,8 +540,7 @@ date,symbol,close,source
 2026-11-20,CRWV,39.51,yahoo
 2026-11-23,CRWV,48.33,yahoo
 2026-11-24,CRWV,42.605,yahoo
-2026-11-25,CRWV,40.12,yahoo
-2025-11-25,IREN,47.47,yahoo
+2026-11-25,CRWV,42.57,yahoo
 2025-11-26,IREN,48.45,yahoo
 2025-11-28,IREN,47.81,yahoo
 2025-12-01,IREN,48.49,yahoo
@@ -789,8 +791,7 @@ date,symbol,close,source
 2026-11-20,IREN,11.82,yahoo
 2026-11-23,IREN,14.64,yahoo
 2026-11-24,IREN,12.95,yahoo
-2026-11-25,IREN,12.22,yahoo
-2025-11-25,APLD,23.74,yahoo
+2026-11-25,IREN,12.85,yahoo
 2025-11-26,APLD,24.94,yahoo
 2025-11-28,APLD,27.1,yahoo
 2025-12-01,APLD,28.21,yahoo
@@ -1041,8 +1042,7 @@ date,symbol,close,source
 2026-11-20,APLD,11.49,yahoo
 2026-11-23,APLD,13.82,yahoo
 2026-11-24,APLD,12.22,yahoo
-2026-11-25,APLD,11.865,yahoo
-2025-11-25,NVDA,177.82,yahoo
+2026-11-25,APLD,12.29,yahoo
 2025-11-26,NVDA,180.26,yahoo
 2025-11-28,NVDA,177.0,yahoo
 2025-12-01,NVDA,179.92,yahoo
@@ -1293,4 +1293,4 @@ date,symbol,close,source
 2026-11-20,NVDA,125.53,yahoo
 2026-11-23,NVDA,165.05,yahoo
 2026-11-24,NVDA,155.38,yahoo
-2026-11-25,NVDA,145.59,yahoo
+2026-11-25,NVDA,149.3,yahoo
